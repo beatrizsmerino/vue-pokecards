@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+#app {
+    display: grid;
+    grid-column: 1fr;
+    grid-row: 2fr 4fr;
+}
+
+.game-options {
+    padding: 30px;
+}
+
+.pokemons-wrapper {
+    display: grid;
+    grid-gap: 10px;
+    grid-area: auto;
+    padding: 0;
+    margin: auto;
+}
+
+.four-items {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.six-items {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.eight-items {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.pokemon-card {
+    list-style: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 150px;
+    border: 1px solid #d0cfcf;
+    position: relative;
+}
+
+.cover-image {
+    z-index: 999;
+    width: 100px;
+    height: 150px;
+    border: 1px solid #d0cfcf;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.pokemon-card.covered .cover-image {
+    display: inherit;
+}
