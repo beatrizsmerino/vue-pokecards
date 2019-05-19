@@ -58,6 +58,10 @@
                 </label>
             </form>
 
+            <p class="attempts">
+                Intentos: {{ count }}
+            </p>
+
             <ul class="pokemons-wrapper four-items">
                 <li v-for="card in cards" :key="card.image" @click="selectCard(card)"
                     :class="{covered: coveredCards.includes(card)}" class="pokemon-card">

@@ -12,6 +12,7 @@ const app = new Vue({
             cards: [],
             pairedCards: [],
             selectedCards: [],
+            count: 0,
         }
     },
     computed: {
@@ -38,6 +39,7 @@ const app = new Vue({
         selectCard(card) {
             this.selectedCards.push(card);
             if (this.selectedCards.length === 2) {
+                this.count++;
                 const [card1, card2] = this.selectedCards;
                 if (card1.pair === card2.pair) {
                     this.pairedCards = this.pairedCards.concat(this.selectedCards);

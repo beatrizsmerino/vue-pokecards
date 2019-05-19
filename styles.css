@@ -88,6 +88,9 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
+
+.attempts {}
+
 .pokemons-wrapper {
     display: grid;
     grid-gap: 10px;
