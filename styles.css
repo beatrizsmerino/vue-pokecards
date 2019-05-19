@@ -9,6 +9,10 @@ body {
     display: none;
 }
 
+.page-title {
+    text-transform: uppercase;
+    color: #30d9c4;
+}
 
 .page-content {
     display: grid;

@@ -11,30 +11,33 @@
 
 <body>
     <div id="app" v-cloak>
-        <h1>
-            El juego de las parejas
-        </h1>
+        <div class="page-content">
+            <h1 class="page-title">
+                El juego de las parejas
+            </h1>
 
-        <form class="game-options">
-            <label>
-                <input type="radio" value="4" v-model="selectedDeck"> 4
-            </label>
-            <label>
-                <input type="radio" value="6" v-model="selectedDeck"> 6
-            </label>
-            <label>
-                <input type="radio" value="8" v-model="selectedDeck"> 8
-            </label>
-        </form>
+            <form class="game-options">
+                <label>
+                    <input type="radio" value="4" v-model="selectedDeck"> 4
+                </label>
+                <label>
+                    <input type="radio" value="6" v-model="selectedDeck"> 6
+                </label>
+                <label>
+                    <input type="radio" value="8" v-model="selectedDeck"> 8
+                </label>
+            </form>
 
-        <ul class="pokemons-wrapper four-items">
-            <li v-for="card in cards" :key="card.image" @click="selectCard(card)" :class="{covered: coveredCards.includes(card)}" class="pokemon-card">
-                <img :src="card.image">
-                <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
-            </li>
-        </ul>
+            <ul class="pokemons-wrapper four-items">
+                <li v-for="card in cards" :key="card.image" @click="selectCard(card)"
+                    :class="{covered: coveredCards.includes(card)}" class="pokemon-card">
+                    <img :src="card.image">
+                    <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
+                </li>
+            </ul>
+        </div>
     </div>
-    
+
     <script src="https://unpkg.com/vue"></script>
     <script src="main.js"></script>
 </body>
