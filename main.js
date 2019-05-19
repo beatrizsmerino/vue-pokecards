@@ -3,3 +3,7 @@ const urls = {
     6: 'https://api.jsonbin.io/b/5cd213c964d4fc359ead3a5a',
     8: 'https://api.jsonbin.io/b/5cd213f6c07f283511e1c251',
 };
+
+const app = new Vue({
+    el: '#app',
+})
