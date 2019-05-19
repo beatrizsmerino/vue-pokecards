@@ -5,7 +5,12 @@ body {
     text-align: center;
 }
 
-#app {
+[v-cloak] {
+    display: none;
+}
+
+
+.page-content {
     display: grid;
     grid-column: 1fr;
     grid-row: 2fr 4fr;
