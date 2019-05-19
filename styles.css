@@ -112,12 +112,15 @@ body {
 }
 
 .pokemon-card {
-    list-style: none;
-    border-radius: 5px;
     width: 100px;
     height: 150px;
-    border: 1px solid #d0cfcf;
+    display: flex;
+    align-items: center;
     position: relative;
+    list-style: none;
+    border-radius: 5px;
+    border: 1px solid #d0cfcf;
+    cursor: pointer;
 }
 
 .cover-image {
