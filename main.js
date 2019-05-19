@@ -6,4 +6,22 @@ const urls = {
 
 const app = new Vue({
     el: '#app',
+    data() {
+        return {
+            selectedDeck: 4,
+            cards: [],
+        }
+    },
+    watch: {
+        selectedDeck: {
+            immediate: true,
+            handler() {
+                fetch(urls[this.selectedDeck])
+                .then(res => res.json())
+                .then(cards => {
+                    this.cards = cards;
+                })
+            },
+        }
+    },
 })
