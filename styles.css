@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
+*, *:after,*:before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -10,18 +16,20 @@ body {
 }
 
 .page-title {
+    margin-bottom: 3rem;
     text-transform: uppercase;
     color: #30d9c4;
 }
 
 .page-content {
+    margin: 5rem 2rem;
     display: grid;
     grid-column: 1fr;
     grid-row: 2fr 4fr;
 }
 
 .game-options {
-    padding: 30px;
+    margin-bottom: 2rem;
 }
 
 .game-options__label {
@@ -88,6 +96,11 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
+
+.attempts {
+    margin-bottom: 2rem;
+}
+
 .pokemons-wrapper {
     display: grid;
     grid-gap: 10px;
@@ -137,4 +150,32 @@ body {
 
 .pokemon-card.covered .cover-image {
     display: inherit;
+}
+
+.result-win{
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    background-color: #30d9c4;
+}
+
+
+
+/* transitions */
+.slide-down-enter{
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.slide-down-enter-to{
+    opacity: 1;
+    transform: translateY(0); 
+}
+.slide-down-enter-active{
+    transition: all 0.5s linear;
 }
