@@ -9,7 +9,14 @@ body {
     display: none;
 }
 
+
+
+
+
+/* PAGE */
+
 .page-title {
+    margin-bottom: 2rem;
     text-transform: uppercase;
     color: #30d9c4;
 }
@@ -19,6 +26,12 @@ body {
     grid-column: 1fr;
     grid-row: 2fr 4fr;
 }
+
+
+
+
+
+/* GAME OPTIONS */
 
 .game-options {
     padding: 30px;
@@ -89,7 +102,32 @@ body {
     vertical-align: middle;
 }
 
-.attempts {}
+
+
+
+
+/* GAME DATA */
+
+.game-data {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.game-data__item {
+    padding: 0.5rem 1rem;
+    background-color: #ededed;
+}
+
+.game-data__item:not(:last-child) {
+    margin-right: 1rem;
+}
+
+
+
+
+
+/* GAME CARDS */
 
 .pokemons-wrapper {
     display: grid;
@@ -122,7 +160,7 @@ body {
     position: relative;
     list-style: none;
     border-radius: 5px;
-    border: 1px solid #d0cfcf;
+    border: 1px solid #30d9c4;
     cursor: pointer;
 }
 
@@ -130,7 +168,7 @@ body {
     z-index: 999;
     width: 100px;
     height: 150px;
-    border: 1px solid #d0cfcf;
+    border: 1px solid #30d9c4;
     border-radius: 5px;
     position: absolute;
     top: 0;
@@ -140,4 +178,47 @@ body {
 
 .pokemon-card.covered .cover-image {
     display: inherit;
+}
+
+
+
+
+
+/* GAME RESULT */
+
+.game-result{
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+}
+
+.game-result--win{
+    background-color: teal;
+}
+.game-result--over{
+    background-color: tomato;
+}
+
+
+
+
+
+/* TRANSITIONS */
+
+.slide-down-enter{
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.slide-down-enter-to{
+    opacity: 1;
+    transform: translateY(0); 
+}
+.slide-down-enter-active{
+    transition: all 0.5s linear;
 }

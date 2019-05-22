@@ -12,7 +12,24 @@ const app = new Vue({
             cards: [],
             pairedCards: [],
             selectedCards: [],
-            count: 0,
+            gameData: {
+                default: {
+                    attempts: 0,
+                    fails: 0,
+                    opportunities: 4,
+                    difficult: false,
+                },
+                changed:{
+                    attempts: 0,
+                    fails: 0,
+                    opportunities: 4
+                }
+            },
+            gameResult: {
+                win: false,
+                over: false
+            }
+
         }
     },
     computed: {
@@ -20,7 +37,24 @@ const app = new Vue({
             return [...this.pairedCards, ...this.selectedCards];
         },
         coveredCards() {
-            return this.cards.filter(card => !this.uncoveredCards.includes(card));
+            let coveredCards = this.cards.filter(card => !this.uncoveredCards.includes(card));
+
+            if (coveredCards.length == 0) {
+                this.gameResult.win = true;
+            } else {
+                this.gameResult.win = false;
+            }
+
+            if (this.selectedDeck == 8) {
+                this.gameData.default.difficult = true;
+                if (this.gameData.changed.opportunities == 0) {
+                    this.gameResult.over = true;
+                }
+            } else {
+                this.gameData.default.difficult = false;
+            }
+
+            return coveredCards;
         },
     },
     watch: {
@@ -31,19 +65,32 @@ const app = new Vue({
                 .then(res => res.json())
                 .then(cards => {
                     this.cards = cards;
+                    this.gameData.changed.attempts = this.gameData.default.attempts;
+                    this.gameData.changed.fails = this.gameData.default.fails;
+                    this.gameData.changed.opportunities = this.gameData.default.opportunities;
                 })
             },
         }
     },
     methods: {
+        random() {
+            this.cards.sort(() => Math.random() - 0.5)
+        },
         selectCard(card) {
             this.selectedCards.push(card);
             if (this.selectedCards.length === 2) {
-                this.count++;
+                this.gameData.changed.attempts++;
+
                 const [card1, card2] = this.selectedCards;
                 if (card1.pair === card2.pair) {
                     this.pairedCards = this.pairedCards.concat(this.selectedCards);
+                } else{
+                    this.gameData.changed.fails++;
+                    if (this.gameData.default.difficult) { 
+                        this.gameData.changed.opportunities--;
+                    }
                 }
+
                 setTimeout(() => {
                     this.selectedCards = [];
                 }, 500);
