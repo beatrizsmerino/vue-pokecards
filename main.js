@@ -12,6 +12,8 @@ const app = new Vue({
             cards: [],
             pairedCards: [],
             selectedCards: [],
+            count: 0,
+            win: false,
         }
     },
     computed: {
@@ -19,7 +21,15 @@ const app = new Vue({
             return [...this.pairedCards, ...this.selectedCards];
         },
         coveredCards() {
-            return this.cards.filter(card => !this.uncoveredCards.includes(card));
+            let coveredCards = this.cards.filter(card => !this.uncoveredCards.includes(card));
+
+            if (coveredCards.length == 0) {
+                this.win = true;
+            } else {
+                this.win = false;
+            }
+
+            return coveredCards;
         },
     },
     watch: {
@@ -38,6 +48,8 @@ const app = new Vue({
         selectCard(card) {
             this.selectedCards.push(card);
             if (this.selectedCards.length === 2) {
+                this.count++;
+                
                 const [card1, card2] = this.selectedCards;
                 if (card1.pair === card2.pair) {
                     this.pairedCards = this.pairedCards.concat(this.selectedCards);

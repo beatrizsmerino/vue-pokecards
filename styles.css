@@ -15,6 +15,7 @@ body {
 }
 
 .page-content {
+    margin: 4rem 2rem;
     display: grid;
     grid-column: 1fr;
     grid-row: 2fr 4fr;
@@ -138,3 +139,31 @@ body {
 .pokemon-card.covered .cover-image {
     display: inherit;
 }
+
+.result-win{
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    background-color: #30d9c4;
+}
+
+
+
+/* transitions */
+.slide-down-enter{
+    opacity: 0;
+    transform: translateY(-100%);
+}
+.slide-down-enter-to{
+    opacity: 1;
+    transform: translateY(0); 
+}
+.slide-down-enter-active{
+    transition: all 0.5s linear;
+} 

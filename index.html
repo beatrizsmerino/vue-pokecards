@@ -65,6 +65,11 @@
                     <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
                 </li>
             </ul>
+
+
+            <transition name="slide-down">
+                <div v-if="win" class="result-win">WIN</div>
+            </transition>
         </div>
     </div>
 
