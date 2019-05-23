@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
-*, *:after,*:before{
+*,
+*:after,
+*:before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -77,22 +79,25 @@ body {
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translate(0,-50%);
+    transform: translate(0, -50%);
     opacity: 0;
     cursor: pointer;
 }
-.game-options__input:checked + svg path{
+
+.game-options__input:checked+svg path {
     transition: all .4s ease;
 }
-.game-options__input:checked + svg path.inner{
+
+.game-options__input:checked+svg path.inner {
     stroke-dashoffset: 38;
     transition-delay: .3s;
 }
-.game-options__input:checked + svg path.outer {
+
+.game-options__input:checked+svg path.outer {
     stroke-dashoffset: 0;
 }
 
-.game-options__text{
+.game-options__text {
     display: inline-block;
     vertical-align: middle;
 }
@@ -152,7 +157,13 @@ body {
     display: inherit;
 }
 
-.result-win{
+
+
+
+
+/* GAME RESULT */
+
+.game-result {
     width: 100%;
     margin: 0 auto;
     padding: 10px 20px;
@@ -164,6 +175,16 @@ body {
     color: #fff;
     background-color: #30d9c4;
 }
+
+.game-result--win {
+    background-color: teal;
+}
+
+.game-result--over {
+    background-color: tomato;
+}
+
+
 
 
 
