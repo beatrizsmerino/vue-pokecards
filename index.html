@@ -67,8 +67,11 @@
             </ul>
 
 
-            <transition name="slide-down">
-                <div v-if="win" class="result-win">WIN</div>
+            <transition name="slide-down-up">
+                <div v-if="gameResult.win" class="game-result game-result--win">WIN</div>
+            </transition>
+            <transition name="slide-down-up">
+                <div v-if="gameResult.over" class="game-result game-result--over">GAME OVER</div>
             </transition>
         </div>
     </div>

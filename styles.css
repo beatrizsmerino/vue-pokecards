@@ -150,20 +150,41 @@ body {
     text-align: center;
     font-size: 2rem;
     color: #fff;
-    background-color: #30d9c4;
-}
-
-
-
-/* transitions */
-.slide-down-enter{
     opacity: 0;
     transform: translateY(-100%);
 }
-.slide-down-enter-to{
-    opacity: 1;
-    transform: translateY(0); 
+
+
+
+/* TRANSITIONS */
+.slide-down-up-enter-active {
+    animation: fadeDownUp 4s forwards;
 }
-.slide-down-enter-active{
-    transition: all 0.5s linear;
-} 
+
+.slide-down-up-enter-to {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+
+@keyframes fadeDownUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    5% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    95% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
