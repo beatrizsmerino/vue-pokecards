@@ -16,6 +16,8 @@
                 El juego de las parejas
             </h1>
 
+            <div @click="resetGame" v-if="gameResult.finish" class="game-button">game again</div>
+
             <form class="game-options">
                 <label for="gameOption1" class="game-options__label">
                     <input id="gameOption1" class="game-options__input" type="radio" value="4" v-model="selectedDeck">
@@ -58,9 +60,21 @@
                 </label>
             </form>
 
+            <div class="game-data">
+                <p class="game-data__item game-data__attempts">
+                    Intentos: {{ gameData.changed.attempts }}
+                </p>
+                <p class="game-data__item game-data__fails">
+                    Fallos: {{ gameData.changed.fails }}
+                </p>
+                <p v-if="gameData.default.difficult" class="game-data__item game-data__opportunities">
+                    Oportunidades: {{ gameData.changed.opportunities }}
+                </p>
+            </div>
+
             <ul class="pokemons-wrapper four-items">
                 <li v-for="card in cards" :key="card.image" @click="selectCard(card)"
-                    :class="{covered: coveredCards.includes(card)}" class="pokemon-card">
+                    :class="{'covered': coveredCards.includes(card)}" class="pokemon-card">
                     <img :src="card.image">
                     <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
                 </li>

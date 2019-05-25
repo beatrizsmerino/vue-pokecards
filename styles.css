@@ -21,6 +21,28 @@ body {
     grid-row: 2fr 4fr;
 }
 
+
+
+
+
+/* GAME BUTTON */
+
+.game-button {
+    max-width: 150px;
+    margin: 0 auto 1rem;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    color: #fff;
+    background-color: var(--color-brand-1);
+    cursor: pointer;
+}
+
+
+
+
+
+/* GAME OPTIONS */
+
 .game-options {
     padding: 30px;
 }

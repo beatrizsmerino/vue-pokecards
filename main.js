@@ -12,21 +12,57 @@ const app = new Vue({
             cards: [],
             pairedCards: [],
             selectedCards: [],
-            count: 0,
-            win: false,
+            gameData: {
+                default: {
+                    attempts: 0,
+                    fails: 0,
+                    opportunities: 4,
+                    difficult: false,
+                },
+                changed:{
+                    attempts: 0,
+                    fails: 0,
+                    opportunities: 4
+                }
+            },
+            gameResult: {
+                finish: false,
+                win: false,
+                over: false
+            },
+            gameReset: false,
         }
     },
     computed: {
-        uncoveredCards(){
-            return [...this.pairedCards, ...this.selectedCards];
+        uncoveredCards() {
+            let uncoveredCards = [...this.pairedCards, ...this.selectedCards];
+            return uncoveredCards;
         },
         coveredCards() {
+
             let coveredCards = this.cards.filter(card => !this.uncoveredCards.includes(card));
 
+            if (this.gameReset) {
+                coveredCards = this.cards;
+                this.gameReset = false;
+                this.gameResult.finish = false;
+            }
+            
             if (coveredCards.length == 0) {
-                this.win = true;
+                this.gameResult.finish = true;
+                this.gameResult.win = true;
             } else {
-                this.win = false;
+                this.gameResult.win = false;
+            }
+
+            if (this.selectedDeck == 8) {
+                this.gameData.default.difficult = true;
+                if (this.gameData.changed.opportunities == 0) {
+                    this.gameResult.over = true;
+                    this.gameResult.finish = true;
+                }
+            } else {
+                this.gameData.default.difficult = false;
             }
 
             return coveredCards;
@@ -58,6 +94,16 @@ const app = new Vue({
                     this.selectedCards = [];
                 }, 500);
             }
+        },
+        resetGame() {
+            this.pairedCards = [];
+            this.selectedCards = [];
+            this.gameData.changed.attempts = this.gameData.default.attempts;
+            this.gameData.changed.fails = this.gameData.default.fails;
+            this.gameData.changed.opportunities = this.gameData.default.opportunities;
+            this.gameData.win = false;
+            this.gameData.over = false;
+            this.gameReset = true;
         }
     },
 })
