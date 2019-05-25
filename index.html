@@ -14,37 +14,27 @@
         <h1>
             El juego de las parejas
         </h1>
+
         <form class="game-options">
             <label>
-                <input type="radio" value="4"> 4
+                <input type="radio" value="4" v-model="selectedDeck"> 4
             </label>
             <label>
-                <input type="radio" value="6"> 6
+                <input type="radio" value="6" v-model="selectedDeck"> 6
             </label>
             <label>
-                <input type="radio" value="8"> 8
+                <input type="radio" value="8" v-model="selectedDeck"> 8
             </label>
         </form>
 
         <ul class="pokemons-wrapper four-items">
-            <li class="pokemon-card covered">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png">
-                <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
-            </li>
-            <li class="pokemon-card">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png">
-                <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
-            </li>
-            <li class="pokemon-card">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png">
-                <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
-            </li>
-            <li class="pokemon-card covered">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
+            <li v-for="card in cards" :key="card.image" @click="selectCard(card)" :class="{covered: coveredCards.includes(card)}" class="pokemon-card">
+                <img :src="card.image">
                 <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
             </li>
         </ul>
     </div>
+    
     <script src="https://unpkg.com/vue"></script>
     <script src="main.js"></script>
 </body>

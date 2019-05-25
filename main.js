@@ -6,4 +6,46 @@ const urls = {
 
 const app = new Vue({
     el: '#app',
+    data() {
+        return {
+            selectedDeck: 4,
+            cards: [],
+            pairedCards: [],
+            selectedCards: [],
+        }
+    },
+    computed: {
+        uncoveredCards(){
+            return [...this.pairedCards, ...this.selectedCards];
+        },
+        coveredCards() {
+            return this.cards.filter(card => !this.uncoveredCards.includes(card));
+        },
+    },
+    watch: {
+        selectedDeck: {
+            immediate: true,
+            handler() {
+                fetch(urls[this.selectedDeck])
+                .then(res => res.json())
+                .then(cards => {
+                    this.cards = cards;
+                })
+            },
+        }
+    },
+    methods: {
+        selectCard(card) {
+            this.selectedCards.push(card);
+            if (this.selectedCards.length === 2) {
+                const [card1, card2] = this.selectedCards;
+                if (card1.pair === card2.pair) {
+                    this.pairedCards = this.pairedCards.concat(this.selectedCards);
+                }
+                setTimeout(() => {
+                    this.selectedCards = [];
+                }, 500);
+            }
+        }
+    },
 })
