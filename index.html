@@ -58,6 +58,18 @@
                 </label>
             </form>
 
+            <div class="game-data">
+                <p class="game-data__item game-data__attempts">
+                    Intentos: {{ gameData.changed.attempts }}
+                </p>
+                <p class="game-data__item game-data__fails">
+                    Fallos: {{ gameData.changed.fails }}
+                </p>
+                <p v-if="gameData.default.difficult" class="game-data__item game-data__opportunities">
+                    Oportunidades: {{ gameData.changed.opportunities }}
+                </p>
+            </div>
+
             <ul class="pokemons-wrapper four-items">
                 <li v-for="card in cards" :key="card.image" @click="selectCard(card)"
                     :class="{covered: coveredCards.includes(card)}" class="pokemon-card">
@@ -65,6 +77,13 @@
                     <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
                 </li>
             </ul>
+
+            <transition name="slide-down">
+                <div v-if="gameResult.win" class="game-result game-result--win">WIN</div>
+            </transition>
+            <transition name="slide-down">
+                <div v-if="gameResult.over" class="game-result game-result--over">GAME OVER</div>
+            </transition>
         </div>
     </div>
 
