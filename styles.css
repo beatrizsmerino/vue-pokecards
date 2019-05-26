@@ -36,10 +36,26 @@ body {
 }
 
 .page-content {
-    margin: 5rem 2rem;
+    margin: 4rem 2rem;
     display: grid;
     grid-column: 1fr;
     grid-row: 2fr 4fr;
+}
+
+
+
+
+
+/* GAME BUTTON */
+
+.game-button {
+    max-width: 150px;
+    margin: 0 auto 1rem;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    color: #fff;
+    background-color: var(--color-brand-1);
+    cursor: pointer;
 }
 
 
@@ -214,6 +230,8 @@ body {
     text-align: center;
     font-size: 2rem;
     color: #fff;
+    opacity: 0;
+    transform: translateY(-100%);
 }
 
 .game-result--win{
@@ -229,14 +247,34 @@ body {
 
 /* TRANSITIONS */
 
-.slide-down-enter{
+.slide-down-up-enter-active {
+    animation: fadeDownUp 4s forwards;
+}
+
+.slide-down-up-enter-to {
     opacity: 0;
     transform: translateY(-100%);
 }
-.slide-down-enter-to{
-    opacity: 1;
-    transform: translateY(0); 
-}
-.slide-down-enter-active{
-    transition: all 0.5s linear;
+
+
+@keyframes fadeDownUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    5% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    95% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
 }
