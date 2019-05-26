@@ -9,6 +9,10 @@ body {
     display: none;
 }
 
+.page-title {
+    text-transform: uppercase;
+    color: #30d9c4;
+}
 
 .page-content {
     display: grid;
@@ -20,6 +24,70 @@ body {
     padding: 30px;
 }
 
+.game-options__label {
+    position: relative;
+    display: inline-block;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.game-options__label:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.game-options__label svg {
+    fill: none;
+    vertical-align: middle;
+}
+
+.game-options__label svg circle {
+    stroke-width: 2;
+    stroke: #C8CCD4;
+}
+
+.game-options__label svg path {
+    stroke: #30d9c4;
+}
+
+.game-options__label svg path.inner {
+    stroke-width: 6;
+    stroke-dasharray: 19;
+    stroke-dashoffset: 19;
+}
+
+.game-options__label svg path.outer {
+    stroke-width: 2;
+    stroke-dasharray: 57;
+    stroke-dashoffset: 57;
+}
+
+.game-options__input {
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0,-50%);
+    opacity: 0;
+    cursor: pointer;
+}
+.game-options__input:checked + svg path{
+    transition: all .4s ease;
+}
+.game-options__input:checked + svg path.inner{
+    stroke-dashoffset: 38;
+    transition-delay: .3s;
+}
+.game-options__input:checked + svg path.outer {
+    stroke-dashoffset: 0;
+}
+
+.game-options__text{
+    display: inline-block;
+    vertical-align: middle;
+}
 .pokemons-wrapper {
     display: grid;
     grid-gap: 10px;
@@ -44,12 +112,15 @@ body {
 }
 
 .pokemon-card {
-    list-style: none;
-    border-radius: 5px;
     width: 100px;
     height: 150px;
-    border: 1px solid #d0cfcf;
+    display: flex;
+    align-items: center;
     position: relative;
+    list-style: none;
+    border-radius: 5px;
+    border: 1px solid #d0cfcf;
+    cursor: pointer;
 }
 
 .cover-image {
