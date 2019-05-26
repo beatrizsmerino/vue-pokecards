@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
+
+:root {
+    --color-brand-1: #30d9c4;
+}
+
+
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -10,18 +24,20 @@ body {
 }
 
 .page-title {
+    margin-bottom: 3rem;
     text-transform: uppercase;
-    color: #30d9c4;
+    color: var(--color-brand-1);
 }
 
 .page-content {
+    margin: 5rem 2rem;
     display: grid;
     grid-column: 1fr;
     grid-row: 2fr 4fr;
 }
 
 .game-options {
-    padding: 30px;
+    margin-bottom: 2rem;
 }
 
 .game-options__label {
@@ -47,7 +63,7 @@ body {
 }
 
 .game-options__label svg path {
-    stroke: #30d9c4;
+    stroke: var(--color-brand-1);
 }
 
 .game-options__label svg path.inner {
@@ -69,25 +85,33 @@ body {
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translate(0,-50%);
+    transform: translate(0, -50%);
     opacity: 0;
     cursor: pointer;
 }
-.game-options__input:checked + svg path{
+
+.game-options__input:checked + svg path {
     transition: all .4s ease;
 }
-.game-options__input:checked + svg path.inner{
+
+.game-options__input:checked + svg path.inner {
     stroke-dashoffset: 38;
     transition-delay: .3s;
 }
-.game-options__input:checked + svg path.outer {
+
+.game-options__input:checked+svg path.outer {
     stroke-dashoffset: 0;
 }
 
-.game-options__text{
+.game-options__text {
     display: inline-block;
     vertical-align: middle;
 }
+
+.attempts {
+    margin-bottom: 2rem;
+}
+
 .pokemons-wrapper {
     display: grid;
     grid-gap: 10px;
@@ -119,7 +143,7 @@ body {
     position: relative;
     list-style: none;
     border-radius: 5px;
-    border: 1px solid #d0cfcf;
+    border: 1px solid var(--color-brand-1);
     cursor: pointer;
 }
 
@@ -127,7 +151,7 @@ body {
     z-index: 999;
     width: 100px;
     height: 150px;
-    border: 1px solid #d0cfcf;
+    border: 1px solid var(--color-brand-1);
     border-radius: 5px;
     position: absolute;
     top: 0;
@@ -137,4 +161,50 @@ body {
 
 .pokemon-card.covered .cover-image {
     display: inherit;
+}
+
+
+
+
+
+/* GAME RESULT */
+
+.game-result {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    background-color: #30d9c4;
+}
+
+.game-result--win {
+    background-color: teal;
+}
+
+.game-result--over {
+    background-color: tomato;
+}
+
+
+
+
+
+/* transitions */
+.slide-down-enter {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.slide-down-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-down-enter-active {
+    transition: all 0.5s linear;
 }
