@@ -167,11 +167,12 @@ body {
 /* GAME CARDS */
 
 .pokemons-wrapper {
+    margin: auto;
+    padding: 0;
     display: grid;
     grid-gap: 10px;
     grid-area: auto;
-    padding: 0;
-    margin: auto;
+    perspective: 600px;
 }
 
 .four-items {
@@ -196,7 +197,13 @@ body {
     align-items: center;
     position: relative;
     list-style: none;
+    transform-style: preserve-3d;
+    transition: transform 1s;
     cursor: pointer;
+}
+
+.card.covered{
+    transform: rotateY(180deg);
 }
 
 .card__face {
@@ -208,14 +215,14 @@ body {
     border-radius: 5px;
     border: 1px solid var(--color-brand-1);
     background-color: #fff;
+    backface-visibility: hidden;
 }
 
 .card-back {
-    opacity: 0;
+    transform: rotateY(180deg);
 }
 
 .card.covered .card-back {
-    opacity: 1;
 }
 
 .card-back__inner {
@@ -234,11 +241,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0;
+    opacity: 1;
 }
 
-.card:not(.covered) .card-front {
-    opacity: 1;
+.card.covered .card-front {
+    opacity: 0;
 }
 
 .card-front__inner {}
