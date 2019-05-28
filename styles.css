@@ -189,33 +189,59 @@ body {
     grid-template-rows: 1fr 1fr;
 }
 
-.pokemon-card {
+.card {
     width: 100px;
     height: 150px;
     display: flex;
     align-items: center;
     position: relative;
     list-style: none;
-    border-radius: 5px;
-    border: 1px solid #30d9c4;
     cursor: pointer;
 }
 
-.cover-image {
-    z-index: 999;
-    width: 100px;
-    height: 150px;
-    border-radius: 5px;
+.card__face {
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    display: none;
+    border-radius: 5px;
     border: 1px solid var(--color-brand-1);
+    background-color: #fff;
 }
 
-.pokemon-card.covered .cover-image {
-    display: inherit;
+.card-back {
+    opacity: 0;
 }
+
+.card.covered .card-back {
+    opacity: 1;
+}
+
+.card-back__inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 4rem;
+    background-color: var(--color-brand-1);
+}
+
+
+.card-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.card:not(.covered) .card-front {
+    opacity: 1;
+}
+
+.card-front__inner {}
 
 
 
@@ -223,7 +249,7 @@ body {
 
 /* GAME RESULT */
 
-.game-result{
+.game-result {
     width: 100%;
     margin: 0 auto;
     padding: 10px 20px;
@@ -237,10 +263,11 @@ body {
     transform: translateY(-100%);
 }
 
-.game-result--win{
+.game-result--win {
     background-color: var(--color-success);
 }
-.game-result--over{
+
+.game-result--over {
     background-color: var(--color-error);
 }
 
