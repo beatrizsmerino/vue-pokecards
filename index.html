@@ -74,9 +74,13 @@
 
             <ul class="pokemons-wrapper four-items">
                 <li v-for="card in cards" :key="card.image" @click="selectCard(card)"
-                    :class="{'covered': coveredCards.includes(card)}" class="pokemon-card">
-                    <img :src="card.image">
-                    <img class="cover-image" src="https://via.placeholder.com/160x195/30d9c4/ffffff/?text=?">
+                    :class="{'covered': coveredCards.includes(card)}" class="card">
+                    <div class="card__face card-front">
+                        <img :src="card.image" class="card-front__inner">
+                    </div>
+                    <div class="card__face card-back">
+                        <div class="card-back__inner">?</div>
+                    </div>
                 </li>
             </ul>
 
