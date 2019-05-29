@@ -84,7 +84,7 @@ const app = new Vue({
         }
     },
     methods: {
-        random() {
+        randomCards() {
             this.cards.sort(() => Math.random() - 0.5)
         },
         selectCard(card) {
