@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+
+:root {
+    --color-brand-1: #30d9c4;
+    --color-gray-light: #ededed;
+    --color-error: tomato;
+    --color-success: teal;
+}
+
+
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+
+
+
+
+/* PAGE */
+
+.page-title {
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    color: var(--color-brand-1);
+}
+
+.page-content {
+    margin: 4rem 2rem;
+    display: grid;
+    grid-column: 1fr;
+    grid-row: 2fr 4fr;
+}
+
+
+
+
+
+/* GAME BUTTON */
+
+.game-button {
+    max-width: 150px;
+    margin: 0 auto 1rem;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    color: #fff;
+    background-color: var(--color-brand-1);
+    cursor: pointer;
+}
+
+
+
+
+
+/* GAME OPTIONS */
+
+.game-options {
+    margin-bottom: 2rem;
+}
+
+.game-options__label {
+    position: relative;
+    display: inline-block;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.game-options__label:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.game-options__label svg {
+    fill: none;
+    vertical-align: middle;
+}
+
+.game-options__label svg circle {
+    stroke-width: 2;
+    stroke: var(--color-gray-light);
+}
+
+.game-options__label svg path {
+    stroke: var(--color-brand-1);
+}
+
+.game-options__label svg path.inner {
+    stroke-width: 6;
+    stroke-dasharray: 19;
+    stroke-dashoffset: 19;
+}
+
+.game-options__label svg path.outer {
+    stroke-width: 2;
+    stroke-dasharray: 57;
+    stroke-dashoffset: 57;
+}
+
+.game-options__input {
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    opacity: 0;
+    cursor: pointer;
+}
+
+.game-options__input:checked + svg path {
+    transition: all .4s ease;
+}
+
+.game-options__input:checked + svg path.inner {
+    stroke-dashoffset: 38;
+    transition-delay: .3s;
+}
+
+.game-options__input:checked+svg path.outer {
+    stroke-dashoffset: 0;
+}
+
+.game-options__text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+
+
+/* GAME DATA */
+
+.game-data {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.game-data__item {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-gray-light);
+}
+
+.game-data__item:not(:last-child) {
+    margin-right: 1rem;
+}
+
+
+
+
+
+/* GAME CARDS */
+
+.pokemons-wrapper {
+    margin: auto;
+    padding: 0;
+    display: grid;
+    grid-gap: 10px;
+    grid-area: auto;
+    perspective: 600px;
+}
+
+.four-items {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.six-items {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.eight-items {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.card {
+    width: 100px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    list-style: none;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+    cursor: pointer;
+}
+
+.card.covered{
+    transform: rotateY(180deg);
+}
+
+.card__face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    border: 1px solid var(--color-brand-1);
+    background-color: #fff;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card.covered .card-back {
+}
+
+.card-back__inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 4rem;
+    background-color: var(--color-brand-1);
+}
+
+
+.card-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.card.covered .card-front {
+    opacity: 0;
+}
+
+.card-front__inner {}
+
+
+
+
+
+/* GAME RESULT */
+
+.game-result {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.game-result--win {
+    background-color: var(--color-success);
+}
+
+.game-result--over {
+    background-color: var(--color-error);
+}
+
+
+
+
+
+/* TRANSITIONS */
+
+.slide-down-up-enter-active {
+    animation: fadeDownUp 4s forwards;
+}
+
+.slide-down-up-enter-to {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+
+@keyframes fadeDownUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    5% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    95% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
