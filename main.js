@@ -109,6 +109,7 @@ const app = new Vue({
             }
         },
         resetGame() {
+            this.randomCards();
             this.pairedCards = [];
             this.selectedCards = [];
             this.gameData.changed.attempts = this.gameData.default.attempts;
