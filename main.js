@@ -76,6 +76,7 @@ const app = new Vue({
                 .then(res => res.json())
                 .then(cards => {
                     this.cards = cards;
+                    this.randomCards();
                     this.gameData.changed.attempts = this.gameData.default.attempts;
                     this.gameData.changed.fails = this.gameData.default.fails;
                     this.gameData.changed.opportunities = this.gameData.default.opportunities;
