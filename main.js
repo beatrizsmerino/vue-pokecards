@@ -90,16 +90,19 @@ const app = new Vue({
         },
         selectCard(card) {
             this.selectedCards.push(card);
+
             if (this.selectedCards.length === 2) {
                 this.gameData.changed.attempts++;
-
                 const [card1, card2] = this.selectedCards;
-                if (card1.pair === card2.pair) {
-                    this.pairedCards = this.pairedCards.concat(this.selectedCards);
-                } else{
-                    this.gameData.changed.fails++;
-                    if (this.gameData.default.difficult) { 
-                        this.gameData.changed.opportunities--;
+
+                if (card1 !== card2) {
+                    if (card1.pair === card2.pair) {
+                        this.pairedCards = this.pairedCards.concat(this.selectedCards);
+                    } else {
+                        this.gameData.changed.fails++;
+                        if (this.gameData.default.difficult) {
+                            this.gameData.changed.opportunities--;
+                        }
                     }
                 }
 
@@ -109,6 +112,7 @@ const app = new Vue({
             }
         },
         resetGame() {
+            this.randomCards();
             this.pairedCards = [];
             this.selectedCards = [];
             this.gameData.changed.attempts = this.gameData.default.attempts;
