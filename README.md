@@ -5,7 +5,7 @@
 # Vue pokecards
 ### Game of couples of Pokémon cards made with vue.js.
 
-![Image of App Vue pokecards](https://github.com/beatrizsmerino/vue-pokecards/blob/feature/documentation/documentation/images/vue-pokecards.jpg)
+![Image of App Vue pokecards](https://github.com/beatrizsmerino/vue-pokecards/blob/master/README/images/vue-pokecards.jpg)
 
 
 
@@ -17,7 +17,7 @@ This game, also known as Memory or Couple Search, is a game where the cards are 
 
 ## Development interface
 
-![Vue logo](https://github.com/beatrizsmerino/vue-pokecards/blob/feature/documentation/documentation/images/vue-logo.png)
+![Vue logo](https://github.com/beatrizsmerino/vue-pokecards/blob/master/README/images/vue-js-2.jpg)
 
 Is developed with **[vue.js](https://vuejs.org/)** 2.6.10 a Javascript framework and ECMAScript 6. This project use hasn't dependencies but you need `npm install`.
 
