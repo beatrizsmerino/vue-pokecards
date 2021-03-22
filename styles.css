@@ -1,317 +1,533 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+/**
+ * @file Styles CSS3
+ * @author Beatriz Sopeña Merino <beatrizsmerino@gmail.com>
+ * @copyright Beatriz Sopeña Merino 2021. It is free software and you can find the source code on Github.
+ * @see {@link https://beatrizsmerino.github.io/vue-pokecards/}
+ */
 
+
+
+
+
+/*** IMPORTS ***/
+/**************************/
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+
+
+
+
+
+/*** COLOR ***/
+/**************************/
 
 :root {
-    --color-brand-1: #30d9c4;
-    --color-gray-light: #ededed;
-    --color-error: tomato;
-    --color-success: teal;
+	--color-white: #ffffff;
+	--color-gray-light: #ededed;
+	--color-gray-dark: #333333;
+	--color-red: #ff6347;
+	--color-red--darken: #de553c;
+	--color-green: #30d9c4;
+	--color-green--darken: #24ae9e;
+
+	--color-brand-1: var(--color-green);
+	--color-brand-1--darken: var(--color-green--darken);
+	--color-error: var(--color-red);
+	--color-error--darken: var(--color-red--darken);
+	--color-success: var(--color-brand-1);
+	--color-success--darken: var(--color-green--darken);
 }
 
+
+
+
+
+/*** RESET ***/
+/**************************/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+
+/*** GENERAL ***/
+/**************************/
 
 *,
 *:after,
 *:before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	/* 1rem = 10px */
+	/* font-size: 62.5%; */
+	font-size: 10px;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
+	font-family: "Roboto", sans-serif;
+	font-size: 1.6rem;
+	text-align: center;
 }
 
 [v-cloak] {
-    display: none;
+	display: none;
 }
 
 
 
 
 
-/* PAGE */
+/*** KEYFRAMES ***/
+/**************************/
+
+@keyframes fadeDownUp {
+	0% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+
+	5% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	95% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(100%);
+	}
+}
+
+
+
+
+
+/*** PAGE ***/
+/**************************/
 
 .page-title {
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    color: var(--color-brand-1);
+	margin-bottom: 6rem;
+	text-transform: uppercase;
+	color: var(--color-brand-1--darken);
+	font-size: 4rem;
+	font-weight: bold;
 }
 
 .page-content {
-    margin: 4rem 2rem;
-    display: grid;
-    grid-column: 1fr;
-    grid-row: 2fr 4fr;
+	margin: 8rem 2rem;
+	display: grid;
+	grid-column: 1fr;
+	grid-row: 2fr 4fr;
 }
 
 
 
 
 
-/* GAME BUTTON */
+/*** GAME BUTTON ***/
+/**************************/
 
 .game-button {
-    max-width: 150px;
-    margin: 0 auto 1rem;
-    padding: 0.5rem 1rem;
-    display: inline-block;
-    color: #fff;
-    background-color: var(--color-brand-1);
-    cursor: pointer;
+	margin: 0 auto;
+	padding: 1rem 2rem;
+	display: inline-block;
+	color: var(--color-white);
+	font-size: 2rem;
+	border-radius: 0.5rem;
+	border: 0;
+	background-color: var(--color-brand-1);
+	outline: none;
+	cursor: pointer;
+}
+
+.game-button:hover {
+	background-color: var(--color-brand-1--darken);
 }
 
 
 
 
 
-/* GAME OPTIONS */
+/*** GAME OPTIONS ***/
+/**************************/
 
 .game-options {
-    margin-bottom: 2rem;
+	margin-bottom: 2rem;
 }
 
 .game-options__label {
-    position: relative;
-    display: inline-block;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: pointer;
+	position: relative;
+	display: inline-block;
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: pointer;
 }
 
 .game-options__label:not(:last-child) {
-    margin-right: 1rem;
+	margin-right: 1rem;
 }
 
 .game-options__label svg {
-    fill: none;
-    vertical-align: middle;
+	fill: none;
+	vertical-align: middle;
 }
 
 .game-options__label svg circle {
-    stroke-width: 2;
-    stroke: var(--color-gray-light);
+	stroke-width: 2;
+	stroke: var(--color-gray-light);
 }
 
 .game-options__label svg path {
-    stroke: var(--color-brand-1);
+	stroke: var(--color-brand-1);
 }
 
 .game-options__label svg path.inner {
-    stroke-width: 6;
-    stroke-dasharray: 19;
-    stroke-dashoffset: 19;
+	stroke-width: 6;
+	stroke-dasharray: 19;
+	stroke-dashoffset: 19;
 }
 
 .game-options__label svg path.outer {
-    stroke-width: 2;
-    stroke-dasharray: 57;
-    stroke-dashoffset: 57;
+	stroke-width: 2;
+	stroke-dasharray: 57;
+	stroke-dashoffset: 57;
 }
 
 .game-options__input {
-    width: 22px;
-    height: 22px;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(0, -50%);
-    opacity: 0;
-    cursor: pointer;
+	width: 2.2rem;
+	height: 2.2rem;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(0, -50%);
+	opacity: 0;
+	cursor: pointer;
 }
 
 .game-options__input:checked + svg path {
-    transition: all .4s ease;
+	transition: all 0.4s ease;
 }
 
 .game-options__input:checked + svg path.inner {
-    stroke-dashoffset: 38;
-    transition-delay: .3s;
+	stroke-dashoffset: 38;
+	transition-delay: 0.3s;
 }
 
-.game-options__input:checked+svg path.outer {
-    stroke-dashoffset: 0;
+.game-options__input:checked + svg path.outer {
+	stroke-dashoffset: 0;
 }
 
 .game-options__text {
-    display: inline-block;
-    vertical-align: middle;
+	display: inline-block;
+	vertical-align: middle;
 }
 
 
 
 
 
-/* GAME DATA */
+/*** GAME DATA ***/
+/**************************/
 
 .game-data {
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .game-data__item {
-    padding: 0.5rem 1rem;
-    background-color: var(--color-gray-light);
+	padding: 0.8rem 1rem;
+	background-color: var(--color-gray-light);
 }
 
 .game-data__item:not(:last-child) {
-    margin-right: 1rem;
+	margin-right: 1rem;
+}
+
+.game-data__attempts {
+}
+
+.game-data__opportunities {
+	color: var(--color-gray-light);
+	background-color: var(--color-gray-dark);
+}
+
+.game-data__fails {
+	color: var(--color-gray-light);
+	background-color: var(--color-error);
 }
 
 
 
 
 
-/* GAME CARDS */
+/*** GAME CARDS ***/
+/**************************/
 
 .pokemons-wrapper {
-    margin: auto;
-    padding: 0;
-    display: grid;
-    grid-gap: 10px;
-    grid-area: auto;
-    perspective: 600px;
+	margin: 2rem auto 4rem;
+	padding: 0;
+	display: grid;
+	grid-gap: 1rem;
+	grid-area: auto;
+	perspective: 60rem;
 }
 
 .four-items {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
 }
 
 .six-items {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 }
 
 .eight-items {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 }
 
 .card {
-    width: 100px;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    list-style: none;
-    transform-style: preserve-3d;
-    transition: transform 1s;
-    cursor: pointer;
+	width: 10rem;
+	height: 15rem;
+	display: flex;
+	align-items: center;
+	position: relative;
+	list-style: none;
+	transform-style: preserve-3d;
+	transition: transform 0.5s ease-in-out 0s;
+	cursor: pointer;
 }
 
-.card.covered{
-    transform: rotateY(180deg);
+.card.covered {
+	transform: rotateY(180deg);
 }
 
 .card__face {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 5px;
-    border: 1px solid var(--color-brand-1);
-    background-color: #fff;
-    backface-visibility: hidden;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 0.5rem;
+	border: 0.1rem solid var(--color-brand-1);
+	background-color: var(--color-white);
+	backface-visibility: hidden;
 }
 
 .card-back {
-    transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
 .card.covered .card-back {
 }
 
 .card-back__inner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 4rem;
-    background-color: var(--color-brand-1);
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--color-white);
+	font-size: 4rem;
+	background-color: var(--color-brand-1);
 }
 
-
 .card-front {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 1;
 }
 
 .card.covered .card-front {
-    opacity: 0;
+	opacity: 0;
 }
 
-.card-front__inner {}
+.card-front__inner {
+}
 
 
 
 
 
-/* GAME RESULT */
+/*** GAME RESULT ***/
+/**************************/
 
 .game-result {
-    width: 100%;
-    margin: 0 auto;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    text-align: center;
-    font-size: 2rem;
-    color: #fff;
-    opacity: 0;
-    transform: translateY(-100%);
+	width: 100%;
+	margin: 0 auto;
+	padding: 2rem 2rem;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: bold;
+	color: var(--color-white);
+	opacity: 0;
+	transform: translateY(100%);
 }
 
 .game-result--win {
-    background-color: var(--color-success);
+	background-color: var(--color-success);
+	filter: brightness(0.9);
 }
 
 .game-result--over {
-    background-color: var(--color-error);
+	background-color: var(--color-error);
 }
 
 
 
 
 
-/* TRANSITIONS */
+/*** ANIMATIONS ***/
+/**************************/
 
 .slide-down-up-enter-active {
-    animation: fadeDownUp 4s forwards;
+	animation: fadeDownUp 4s forwards 1s;
 }
 
 .slide-down-up-enter-to {
-    opacity: 0;
-    transform: translateY(-100%);
-}
-
-
-@keyframes fadeDownUp {
-    0% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-
-    5% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    95% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(-100%);
-    }
+	opacity: 0;
+	transform: translateY(100%);
 }
