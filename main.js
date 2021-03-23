@@ -31,6 +31,7 @@ const app = new Vue({
 				over: false,
 			},
 			gameReset: false,
+			lastOpportunity: false,
 		};
 	},
 	computed: {
@@ -106,6 +107,8 @@ const app = new Vue({
 					}
 				}
 
+				this.checkLastOpportunity();
+
 				setTimeout(() => {
 					this.selectedCards = [];
 				}, 500);
@@ -121,6 +124,12 @@ const app = new Vue({
 			this.gameData.win = false;
 			this.gameData.over = false;
 			this.gameReset = true;
+			this.lastOpportunity = false;
+		},
+		checkLastOpportunity() {
+			this.selectedDeck == 8 && this.gameData.changed.opportunities <= 1
+				? (this.lastOpportunity = true)
+				: false;
 		},
 	},
 });

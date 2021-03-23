@@ -235,6 +235,31 @@ body {
 	}
 }
 
+/*
+https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/shakeY.css
+*/
+@keyframes shakeY {
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate3d(0, -0.5rem, 0);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate3d(0, 0.5rem, 0);
+  }
+}
+
 
 
 
@@ -389,9 +414,16 @@ body {
 	background-color: var(--color-gray-dark);
 }
 
-.game-data__fails {
+.game-data__opportunities--error {
 	color: var(--color-gray-light);
 	background-color: var(--color-error);
+	-webkit-animation: shakeY 1s ease-in-out forwards;
+	animation: shakeY 1s ease-in-out forwards;
+}
+
+.game-data__fails {
+	color: var(--color-gray-light);
+	background-color: var(--color-error--darken);
 }
 
 
