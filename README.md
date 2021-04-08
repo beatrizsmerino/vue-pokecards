@@ -1,6 +1,8 @@
-![shieldsIO](https://img.shields.io/github/issues/beatrizsmerino/vue-pokecards)
-![shieldsIO](https://img.shields.io/github/forks/beatrizsmerino/vue-pokecards)
-![shieldsIO](https://img.shields.io/github/stars/beatrizsmerino/vue-pokecards)
+![GitHub issues](https://img.shields.io/github/issues/beatrizsmerino/vue-pokecards)
+![GitHub forks](https://img.shields.io/github/forks/beatrizsmerino/vue-pokecards)
+![GitHub stars](https://img.shields.io/github/stars/beatrizsmerino/vue-pokecards)
+![GitHub watchers](https://img.shields.io/github/watchers/beatrizsmerino/vue-pokecards)
+![GitHub last commit](https://img.shields.io/github/last-commit/beatrizsmerino/vue-pokecards)
 
 # Vue pokecards
 ### Game of couples of Pokémon cards made with vue.js.
