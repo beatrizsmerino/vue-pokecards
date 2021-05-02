@@ -44,28 +44,9 @@ const app = new Vue({
 				(card) => !this.uncoveredCards.includes(card)
 			);
 
-			if (this.gameReset) {
-				coveredCards = this.cards;
-				this.gameReset = false;
-				this.gameResult.finish = false;
-			}
-
-			if (coveredCards.length == 0) {
-				this.gameResult.finish = true;
-				this.gameResult.win = true;
-			} else {
-				this.gameResult.win = false;
-			}
-
-			if (this.selectedDeck == 8) {
-				this.gameData.default.difficult = true;
-				if (this.gameData.changed.opportunities == 0) {
-					this.gameResult.over = true;
-					this.gameResult.finish = true;
-				}
-			} else {
-				this.gameData.default.difficult = false;
-			}
+			this.initGame(coveredCards);
+			this.checkResultGame(coveredCards);
+			this.checkDifficulty();
 
 			return coveredCards;
 		},
@@ -114,22 +95,58 @@ const app = new Vue({
 				}, 500);
 			}
 		},
+		resetData() {
+			this.gameData.changed.attempts = this.gameData.default.attempts;
+			this.gameData.changed.fails = this.gameData.default.fails;
+			this.gameData.changed.opportunities = this.gameData.default.opportunities;
+		},
+		resetResult() {
+			this.gameResult.finish = false;
+			this.gameResult.win = false;
+			this.gameResult.over = false;
+		},
+		initGame(coveredCards) {
+			if (this.gameReset) {
+				this.cards = coveredCards;
+				this.gameReset = false;
+				this.gameResult.finish = false;
+			}
+		},
 		resetGame() {
 			this.randomCards();
 			this.pairedCards = [];
 			this.selectedCards = [];
-			this.gameData.changed.attempts = this.gameData.default.attempts;
-			this.gameData.changed.fails = this.gameData.default.fails;
-			this.gameData.changed.opportunities = this.gameData.default.opportunities;
-			this.gameResult.win = false;
-			this.gameResult.over = false;
+			this.resetData();
+			this.resetResult();
 			this.gameReset = true;
 			this.lastOpportunity = false;
+		},
+		checkResultGame(coveredCards) {
+			if (coveredCards.length == 0) {
+				this.gameResult.finish = true;
+				this.gameResult.win = true;
+			} else {
+				this.gameResult.win = false;
+			}
+		},
+		checkOportunities() {
+			if (this.gameData.changed.opportunities == 0) {
+				this.gameResult.over = true;
+				this.gameResult.finish = true;
+			}
 		},
 		checkLastOpportunity() {
 			this.selectedDeck == 8 && this.gameData.changed.opportunities <= 1
 				? (this.lastOpportunity = true)
 				: false;
+		},
+		checkDifficulty() {
+			if (this.selectedDeck == 8) {
+				this.gameData.default.difficult = true;
+				this.checkOportunities();
+			} else {
+				this.gameData.default.difficult = false;
+			}
 		},
 	},
 });
