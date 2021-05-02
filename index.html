@@ -68,7 +68,7 @@
 					<p class="game-data__item game-data__fails">
 						Fallos: {{ gameData.changed.fails }}
 					</p>
-					<p v-if="gameData.default.difficult" class="game-data__item game-data__opportunities" :class="{'game-data__opportunities--error': lastOpportunity}">
+					<p v-if="gameData.changed.difficult" class="game-data__item game-data__opportunities" :class="{'game-data__opportunities--error': lastOpportunity}">
 						Oportunidades: {{ gameData.changed.opportunities }}
 					</p>
 				</div>
