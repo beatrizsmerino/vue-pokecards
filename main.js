@@ -121,8 +121,8 @@ const app = new Vue({
 			this.gameData.changed.attempts = this.gameData.default.attempts;
 			this.gameData.changed.fails = this.gameData.default.fails;
 			this.gameData.changed.opportunities = this.gameData.default.opportunities;
-			this.gameData.win = false;
-			this.gameData.over = false;
+			this.gameResult.win = false;
+			this.gameResult.over = false;
 			this.gameReset = true;
 			this.lastOpportunity = false;
 		},
