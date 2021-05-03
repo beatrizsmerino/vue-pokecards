@@ -84,6 +84,27 @@ const app = new Vue({
 				console.warn(error);
 			}
 		},
+		createPokemon(data) {
+			const pokemon = {
+				id: data.id,
+				name: data.name,
+				images: {
+					game: {
+						front: data.sprites.front_default,
+						back: data.sprites.back_default,
+					},
+					png: {
+						front: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
+					},
+					svg: {
+						front: data.sprites.other.dream_world.front_default,
+					},
+				},
+			};
+			console.log(pokemon);
+
+			return pokemon;
+		},
 		randomCards() {
 			this.cards.sort(() => Math.random() - 0.5);
 		},
@@ -171,8 +192,9 @@ const app = new Vue({
 			}
 		},
 	},
-	created() {
-		const pokemonRandom = this.getRandomInteger(1, 152);
-		const pokemonData = this.getPokemon(pokemonRandom);
+	async created() {
+		const pokemonRandom = await this.getRandomInteger(1, 152);
+		const pokemonData = await this.getPokemon(pokemonRandom);
+		const pokemonDataFormatted = await this.createPokemon(pokemonData);
 	},
 });
