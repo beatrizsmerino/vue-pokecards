@@ -23,6 +23,7 @@ const app = new Vue({
 					attempts: 0,
 					fails: 0,
 					opportunities: 4,
+					difficult: false,
 				},
 			},
 			gameResult: {
@@ -44,28 +45,9 @@ const app = new Vue({
 				(card) => !this.uncoveredCards.includes(card)
 			);
 
-			if (this.gameReset) {
-				coveredCards = this.cards;
-				this.gameReset = false;
-				this.gameResult.finish = false;
-			}
-
-			if (coveredCards.length == 0) {
-				this.gameResult.finish = true;
-				this.gameResult.win = true;
-			} else {
-				this.gameResult.win = false;
-			}
-
-			if (this.selectedDeck == 8) {
-				this.gameData.default.difficult = true;
-				if (this.gameData.changed.opportunities == 0) {
-					this.gameResult.over = true;
-					this.gameResult.finish = true;
-				}
-			} else {
-				this.gameData.default.difficult = false;
-			}
+			this.initGame(coveredCards);
+			this.checkResultGame(coveredCards);
+			this.checkDifficulty();
 
 			return coveredCards;
 		},
@@ -88,48 +70,87 @@ const app = new Vue({
 			this.cards.sort(() => Math.random() - 0.5);
 		},
 		selectCard(card) {
-			this.selectedCards.push(card);
+			if (!this.gameResult.finish) {
+				this.selectedCards.push(card);
 
-			if (this.selectedCards.length === 2) {
-				this.gameData.changed.attempts++;
-				const [card1, card2] = this.selectedCards;
+				if (this.selectedCards.length === 2) {
+					this.gameData.changed.attempts++;
+					const [card1, card2] = this.selectedCards;
 
-				if (card1 !== card2) {
-					if (card1.pair === card2.pair) {
-						this.pairedCards = this.pairedCards.concat(
-							this.selectedCards
-						);
-					} else {
-						this.gameData.changed.fails++;
-						if (this.gameData.default.difficult) {
-							this.gameData.changed.opportunities--;
+					if (card1 !== card2) {
+						if (card1.pair === card2.pair) {
+							this.pairedCards = this.pairedCards.concat(
+								this.selectedCards
+							);
+						} else {
+							this.gameData.changed.fails++;
+							if (this.gameData.changed.difficult) {
+								this.gameData.changed.opportunities--;
+							}
 						}
 					}
+
+					this.checkLastOpportunity();
+
+					setTimeout(() => {
+						this.selectedCards = [];
+					}, 500);
 				}
-
-				this.checkLastOpportunity();
-
-				setTimeout(() => {
-					this.selectedCards = [];
-				}, 500);
+			}
+		},
+		resetData() {
+			this.gameData.changed.attempts = this.gameData.default.attempts;
+			this.gameData.changed.fails = this.gameData.default.fails;
+			this.gameData.changed.opportunities = this.gameData.default.opportunities;
+			this.gameData.changed.difficult = this.gameData.default.difficult;
+		},
+		resetResult() {
+			this.gameResult.finish = false;
+			this.gameResult.win = false;
+			this.gameResult.over = false;
+		},
+		initGame(coveredCards) {
+			if (this.gameReset) {
+				this.cards = coveredCards;
+				this.gameReset = false;
+				this.gameResult.finish = false;
 			}
 		},
 		resetGame() {
 			this.randomCards();
 			this.pairedCards = [];
 			this.selectedCards = [];
-			this.gameData.changed.attempts = this.gameData.default.attempts;
-			this.gameData.changed.fails = this.gameData.default.fails;
-			this.gameData.changed.opportunities = this.gameData.default.opportunities;
-			this.gameData.win = false;
-			this.gameData.over = false;
+			this.resetData();
+			this.resetResult();
 			this.gameReset = true;
 			this.lastOpportunity = false;
+		},
+		checkResultGame(coveredCards) {
+			if (coveredCards.length == 0) {
+				this.gameResult.finish = true;
+				this.gameResult.win = true;
+			} else {
+				this.gameResult.win = false;
+			}
+		},
+		checkOportunities() {
+			if (this.gameData.changed.opportunities == 0) {
+				this.gameResult.over = true;
+				this.gameResult.finish = true;
+			}
 		},
 		checkLastOpportunity() {
 			this.selectedDeck == 8 && this.gameData.changed.opportunities <= 1
 				? (this.lastOpportunity = true)
 				: false;
+		},
+		checkDifficulty() {
+			if (this.selectedDeck == 8) {
+				this.gameData.changed.difficult = true;
+				this.checkOportunities();
+			} else {
+				this.gameData.changed.difficult = false;
+			}
 		},
 	},
 });
