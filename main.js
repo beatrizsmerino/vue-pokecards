@@ -66,6 +66,12 @@ const app = new Vue({
 		},
 	},
 	methods: {
+		getRandomInteger(min, max) {
+			const numberRandom = Math.floor(Math.random() * (max - min)) + min;
+			console.log("Number integer random:", numberRandom);
+
+			return numberRandom;
+		},
 		randomCards() {
 			this.cards.sort(() => Math.random() - 0.5);
 		},
@@ -152,5 +158,8 @@ const app = new Vue({
 				this.gameData.changed.difficult = false;
 			}
 		},
+	},
+	created() {
+		const pokemonRandom = this.getRandomInteger(1, 152);
 	},
 });
