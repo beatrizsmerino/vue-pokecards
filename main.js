@@ -70,30 +70,32 @@ const app = new Vue({
 			this.cards.sort(() => Math.random() - 0.5);
 		},
 		selectCard(card) {
-			this.selectedCards.push(card);
+			if (!this.gameResult.finish) {
+				this.selectedCards.push(card);
 
-			if (this.selectedCards.length === 2) {
-				this.gameData.changed.attempts++;
-				const [card1, card2] = this.selectedCards;
+				if (this.selectedCards.length === 2) {
+					this.gameData.changed.attempts++;
+					const [card1, card2] = this.selectedCards;
 
-				if (card1 !== card2) {
-					if (card1.pair === card2.pair) {
-						this.pairedCards = this.pairedCards.concat(
-							this.selectedCards
-						);
-					} else {
-						this.gameData.changed.fails++;
-						if (this.gameData.changed.difficult) {
-							this.gameData.changed.opportunities--;
+					if (card1 !== card2) {
+						if (card1.pair === card2.pair) {
+							this.pairedCards = this.pairedCards.concat(
+								this.selectedCards
+							);
+						} else {
+							this.gameData.changed.fails++;
+							if (this.gameData.changed.difficult) {
+								this.gameData.changed.opportunities--;
+							}
 						}
 					}
+
+					this.checkLastOpportunity();
+
+					setTimeout(() => {
+						this.selectedCards = [];
+					}, 500);
 				}
-
-				this.checkLastOpportunity();
-
-				setTimeout(() => {
-					this.selectedCards = [];
-				}, 500);
 			}
 		},
 		resetData() {
