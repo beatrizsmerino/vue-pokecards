@@ -72,6 +72,18 @@ const app = new Vue({
 
 			return numberRandom;
 		},
+		async getPokemon(id) {
+			try {
+				const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+
+				const data = await res.json();
+				console.log(data);
+
+				return data;
+			} catch (error) {
+				console.warn(error);
+			}
+		},
 		randomCards() {
 			this.cards.sort(() => Math.random() - 0.5);
 		},
@@ -161,5 +173,6 @@ const app = new Vue({
 	},
 	created() {
 		const pokemonRandom = this.getRandomInteger(1, 152);
+		const pokemonData = this.getPokemon(pokemonRandom);
 	},
 });
