@@ -277,9 +277,8 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .page-content {
 	margin: 8rem 2rem;
-	display: grid;
-	grid-column: 1fr;
-	grid-row: 2fr 4fr;
+	display: flex;
+	flex-direction: column;
 }
 
 
@@ -433,32 +432,27 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 /*** GAME CARDS ***/
 /**************************/
 
-.pokemons-wrapper {
+.list-cards {
+	max-width: 50rem;
 	margin: 2rem auto 4rem;
 	padding: 0;
-	display: grid;
-	grid-gap: 1rem;
-	grid-area: auto;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 	perspective: 60rem;
 }
 
-.four-items {
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr;
+.list-cards--8 {
+	max-width: 90rem;
 }
 
-.six-items {
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
-}
-
-.eight-items {
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
+.list-cards--10 {
+	max-width: 120rem;
 }
 
 .card {
 	width: 10rem;
+	margin: 0.5rem;
 	height: 15rem;
 	display: flex;
 	align-items: center;
@@ -505,9 +499,15 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .card-front {
 	display: flex;
+	padding: 0.5rem;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	opacity: 1;
+}
+
+.card-front__name {
+	color: var(--color-brand-1);
 }
 
 .card.covered .card-front {
@@ -515,6 +515,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 }
 
 .card-front__inner {
+	width: 100%;
 }
 
 
