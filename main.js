@@ -105,6 +105,29 @@ const app = new Vue({
 
 			return pokemon;
 		},
+		createPairs(pokemons) {
+			let pokemonPairs = [];
+			for (let index = 0; index < pokemons.length; index++) {
+				const pokemon = pokemons[index];
+
+				const pokemonFront = {
+					id: pokemon.id,
+					name: pokemon.name,
+					image: pokemon.images.game.front,
+				};
+				const pokemonBack = {
+					id: pokemon.id,
+					name: pokemon.name,
+					image: pokemon.images.game.back,
+				};
+
+				pokemonPairs.push(pokemonFront);
+				pokemonPairs.push(pokemonBack);
+			}
+			console.log("Pokemon pairs", pokemonPairs);
+
+			return pokemonPairs;
+		},
 		async getPokemons(numberMax) {
 			let pokemonList = [];
 			for (let index = 0; index < numberMax; index++) {
@@ -206,5 +229,6 @@ const app = new Vue({
 	},
 	async created() {
 		const pokemonsList = await this.getPokemons(6);
+		const pokemonsPairs = this.createPairs(pokemonsList);
 	},
 });
