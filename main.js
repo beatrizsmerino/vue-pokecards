@@ -1,9 +1,3 @@
-const urls = {
-	4: "https://api.jsonbin.io/b/5cd2137a4c004c0eb4950d03",
-	6: "https://api.jsonbin.io/b/5cd213c964d4fc359ead3a5a",
-	8: "https://api.jsonbin.io/b/5cd213f6c07f283511e1c251",
-};
-
 const app = new Vue({
 	el: "#app",
 	data() {
@@ -56,12 +50,7 @@ const app = new Vue({
 		selectedDeck: {
 			immediate: true,
 			handler() {
-				fetch(urls[this.selectedDeck])
-					.then((res) => res.json())
-					.then((cards) => {
-						this.cards = cards;
-						this.resetGame();
-					});
+				this.resetGame();
 			},
 		},
 	},
@@ -140,7 +129,10 @@ const app = new Vue({
 
 			return pokemonList;
 		},
-		randomCards() {
+		async randomCards() {
+			const pokemonsList = await this.getPokemons(this.selectedDeck);
+			const pokemonsPairs = this.createPairs(pokemonsList);
+			this.cards = pokemonsPairs;
 			this.cards.sort(() => Math.random() - 0.5);
 		},
 		selectCard(card) {
@@ -152,7 +144,7 @@ const app = new Vue({
 					const [card1, card2] = this.selectedCards;
 
 					if (card1 !== card2) {
-						if (card1.pair === card2.pair) {
+						if (card1.id === card2.id) {
 							this.pairedCards = this.pairedCards.concat(
 								this.selectedCards
 							);
@@ -226,9 +218,5 @@ const app = new Vue({
 				this.gameData.changed.difficult = false;
 			}
 		},
-	},
-	async created() {
-		const pokemonsList = await this.getPokemons(6);
-		const pokemonsPairs = this.createPairs(pokemonsList);
 	},
 });
