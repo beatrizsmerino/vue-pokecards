@@ -499,9 +499,15 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .card-front {
 	display: flex;
+	padding: 0.5rem;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	opacity: 1;
+}
+
+.card-front__name {
+	color: var(--color-brand-1);
 }
 
 .card.covered .card-front {
@@ -509,6 +515,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 }
 
 .card-front__inner {
+	width: 100%;
 }
 
 
