@@ -57,7 +57,7 @@ const app = new Vue({
 	methods: {
 		getRandomInteger(min, max) {
 			const numberRandom = Math.floor(Math.random() * (max - min)) + min;
-			console.log("Number integer random:", numberRandom);
+			// console.log("Number integer random:", numberRandom);
 
 			return numberRandom;
 		},
@@ -66,7 +66,7 @@ const app = new Vue({
 				const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
 				const data = await res.json();
-				console.log(data);
+				// console.log(data);
 
 				return data;
 			} catch (error) {
@@ -90,7 +90,7 @@ const app = new Vue({
 					},
 				},
 			};
-			console.log(pokemon);
+			// console.log(pokemon);
 
 			return pokemon;
 		},
@@ -113,7 +113,7 @@ const app = new Vue({
 				pokemonPairs.push(pokemonFront);
 				pokemonPairs.push(pokemonBack);
 			}
-			console.log("Pokemon pairs", pokemonPairs);
+			// console.log("Pokemon pairs", pokemonPairs);
 
 			return pokemonPairs;
 		},
@@ -125,7 +125,7 @@ const app = new Vue({
 				const pokemonDataFormatted = await this.createPokemon(pokemonData);
 				pokemonList.push(pokemonDataFormatted);
 			}
-			console.log(`Get ${numberMax} pokemons`, pokemonList);
+			// console.log(`Get ${numberMax} pokemons`, pokemonList);
 
 			return pokemonList;
 		},
