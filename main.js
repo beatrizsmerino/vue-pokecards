@@ -105,6 +105,18 @@ const app = new Vue({
 
 			return pokemon;
 		},
+		async getPokemons(numberMax) {
+			let pokemonList = [];
+			for (let index = 0; index < numberMax; index++) {
+				const pokemonRandom = await this.getRandomInteger(1, 152);
+				const pokemonData = await this.getPokemon(pokemonRandom);
+				const pokemonDataFormatted = await this.createPokemon(pokemonData);
+				pokemonList.push(pokemonDataFormatted);
+			}
+			console.log(`Get ${numberMax} pokemons`, pokemonList);
+
+			return pokemonList;
+		},
 		randomCards() {
 			this.cards.sort(() => Math.random() - 0.5);
 		},
@@ -193,8 +205,6 @@ const app = new Vue({
 		},
 	},
 	async created() {
-		const pokemonRandom = await this.getRandomInteger(1, 152);
-		const pokemonData = await this.getPokemon(pokemonRandom);
-		const pokemonDataFormatted = await this.createPokemon(pokemonData);
+		const pokemonsList = await this.getPokemons(6);
 	},
 });
