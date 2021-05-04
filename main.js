@@ -10,13 +10,13 @@ const app = new Vue({
 				default: {
 					attempts: 0,
 					fails: 0,
-					opportunities: 4,
+					opportunities: 5,
 					difficult: false,
 				},
 				changed: {
 					attempts: 0,
 					fails: 0,
-					opportunities: 4,
+					opportunities: 5,
 					difficult: false,
 				},
 			},
@@ -189,6 +189,7 @@ const app = new Vue({
 			this.resetData();
 			this.resetResult();
 			this.gameReset = true;
+			this.updatedOportunities();
 			this.lastOpportunity = false;
 		},
 		checkResultGame(coveredCards) {
@@ -206,17 +207,22 @@ const app = new Vue({
 			}
 		},
 		checkLastOpportunity() {
-			this.selectedDeck == 8 && this.gameData.changed.opportunities <= 1
+			this.gameData.changed.difficult &&
+			this.gameData.changed.opportunities <= 1
 				? (this.lastOpportunity = true)
 				: false;
 		},
 		checkDifficulty() {
-			if (this.selectedDeck == 8) {
+			if (this.selectedDeck >= 8) {
 				this.gameData.changed.difficult = true;
 				this.checkOportunities();
 			} else {
 				this.gameData.changed.difficult = false;
 			}
 		},
+		updatedOportunities() {
+			this.gameData.default.opportunities = (this.selectedDeck * 2) - 6;
+			this.gameData.changed.opportunities = (this.selectedDeck * 2) - 6;
+		}
 	},
 });
