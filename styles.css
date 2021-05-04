@@ -264,6 +264,18 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 
 
+/*** LOGO ***/
+/**************************/
+
+.logo-pokemon {
+	max-width: 40rem;
+	margin: 0 auto 4rem;
+}
+
+
+
+
+
 /*** PAGE ***/
 /**************************/
 
@@ -276,7 +288,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 }
 
 .page-content {
-	margin: 8rem 2rem;
+	margin: 4rem 2rem;
 	display: flex;
 	flex-direction: column;
 }
