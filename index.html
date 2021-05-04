@@ -128,7 +128,10 @@
 					</p>
 				</div>
 
-				<ul class="pokemons-wrapper four-items">
+				<ul
+					class="list-cards"
+					:class="{'list-cards--8': (selectedDeck == 8), 'list-cards--10': (selectedDeck > 8)}"
+				>
 					<li
 						v-for="card in cards"
 						:key="card.image"
