@@ -26,15 +26,10 @@
 	--color-gray-light: #ededed;
 	--color-gray-dark: #333333;
 
-	--color-red: #ff6347;
-	--color-red--darken: #de553c;
-	--color-green: #30d9c4;
-	--color-green--darken: #24ae9e;
-
-	--color-error: var(--color-red);
-	--color-error--darken: var(--color-red--darken);
-	--color-success: var(var(--color-green));
-	--color-success--darken: var(--color-green--darken);
+	--color-error: #ff6347;
+	--color-error--darken: #de553c;
+	--color-success: #30d9c4;
+	--color-success--darken: #24ae9e;
 
 	/* https://www.schemecolor.com/pokemon-colors.php */
 	--color-pokemon-1: #FF0000;
