@@ -270,8 +270,8 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 /**************************/
 
 .logo-pokemon {
-	max-width: 40rem;
-	margin: 0 auto 4rem;
+	max-width: 30rem;
+	margin: 0 auto 3rem;
 }
 
 
@@ -282,10 +282,10 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 /**************************/
 
 .page-title {
-	margin-bottom: 6rem;
+	margin-bottom: 4rem;
 	text-transform: uppercase;
 	color: var(--color-white);
-	font-size: 4rem;
+	font-size: 3rem;
 	font-weight: bold;
 }
 
