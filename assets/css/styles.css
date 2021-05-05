@@ -25,17 +25,18 @@
 	--color-white: #ffffff;
 	--color-gray-light: #ededed;
 	--color-gray-dark: #333333;
-	--color-red: #ff6347;
-	--color-red--darken: #de553c;
-	--color-green: #30d9c4;
-	--color-green--darken: #24ae9e;
 
-	--color-brand-1: var(--color-green);
-	--color-brand-1--darken: var(--color-green--darken);
-	--color-error: var(--color-red);
-	--color-error--darken: var(--color-red--darken);
-	--color-success: var(--color-brand-1);
-	--color-success--darken: var(--color-green--darken);
+	--color-error: #ff6347;
+	--color-error--darken: #de553c;
+	--color-success: #30d9c4;
+	--color-success--darken: #24ae9e;
+
+	/* https://www.schemecolor.com/pokemon-colors.php */
+	--color-pokemon-1: #FF0000;
+	--color-pokemon-2: #CC0000;
+	--color-pokemon-3: #3B4CCA;
+	--color-pokemon-4: #FFDE00;
+	--color-pokemon-5: #83A125;
 }
 
 
@@ -200,6 +201,7 @@ body {
 	font-family: "Roboto", sans-serif;
 	font-size: 1.6rem;
 	text-align: center;
+	background-color: var(--color-pokemon-2);
 }
 
 [v-cloak] {
@@ -264,22 +266,33 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 
 
+/*** LOGO ***/
+/**************************/
+
+.logo-pokemon {
+	max-width: 30rem;
+	margin: 0 auto 3rem;
+}
+
+
+
+
+
 /*** PAGE ***/
 /**************************/
 
 .page-title {
-	margin-bottom: 6rem;
+	margin-bottom: 4rem;
 	text-transform: uppercase;
-	color: var(--color-brand-1--darken);
-	font-size: 4rem;
+	color: var(--color-white);
+	font-size: 3rem;
 	font-weight: bold;
 }
 
 .page-content {
-	margin: 8rem 2rem;
-	display: grid;
-	grid-column: 1fr;
-	grid-row: 2fr 4fr;
+	margin: 4rem 2rem;
+	display: flex;
+	flex-direction: column;
 }
 
 
@@ -293,17 +306,20 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	margin: 0 auto;
 	padding: 1rem 2rem;
 	display: inline-block;
-	color: var(--color-white);
+	color: var(--color-pokemon-3);
 	font-size: 2rem;
+	font-weight: 700;
 	border-radius: 0.5rem;
-	border: 0;
-	background-color: var(--color-brand-1);
+	border: 0.4rem solid var(--color-pokemon-3);
+	background-color: var(--color-pokemon-4);
+	box-shadow: -0.4rem 0.4rem 0 var(--color-white);
 	outline: none;
 	cursor: pointer;
 }
 
 .game-button:hover {
-	background-color: var(--color-brand-1--darken);
+	color: var(--color-pokemon-3);
+	background-color: var(--color-white);
 }
 
 
@@ -315,6 +331,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .game-options {
 	margin-bottom: 2rem;
+	color: var(--color-white);
 }
 
 .game-options__label {
@@ -336,11 +353,11 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .game-options__label svg circle {
 	stroke-width: 2;
-	stroke: var(--color-gray-light);
+	stroke: var(--color-white);
 }
 
 .game-options__label svg path {
-	stroke: var(--color-brand-1);
+	stroke: var(--color-white);
 }
 
 .game-options__label svg path.inner {
@@ -399,7 +416,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .game-data__item {
 	padding: 0.8rem 1rem;
-	background-color: var(--color-gray-light);
+	background-color: var(--color-white);
 }
 
 .game-data__item:not(:last-child) {
@@ -410,19 +427,22 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 }
 
 .game-data__opportunities {
-	color: var(--color-gray-light);
+	color: var(--color-white);
+	border: 0.1rem solid var(--color-white);
 	background-color: var(--color-gray-dark);
 }
 
 .game-data__opportunities--error {
-	color: var(--color-gray-light);
+	color: var(--color-white);
+	border: 0.1rem solid var(--color-white);
 	background-color: var(--color-error);
 	-webkit-animation: shakeY 1s ease-in-out forwards;
 	animation: shakeY 1s ease-in-out forwards;
 }
 
 .game-data__fails {
-	color: var(--color-gray-light);
+	color: var(--color-white);
+	border: 0.1rem solid var(--color-white);
 	background-color: var(--color-error--darken);
 }
 
@@ -433,32 +453,27 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 /*** GAME CARDS ***/
 /**************************/
 
-.pokemons-wrapper {
+.list-cards {
+	max-width: 50rem;
 	margin: 2rem auto 4rem;
 	padding: 0;
-	display: grid;
-	grid-gap: 1rem;
-	grid-area: auto;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 	perspective: 60rem;
 }
 
-.four-items {
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr;
+.list-cards--8 {
+	max-width: 90rem;
 }
 
-.six-items {
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
-}
-
-.eight-items {
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
+.list-cards--10 {
+	max-width: 120rem;
 }
 
 .card {
 	width: 10rem;
+	margin: 0.5rem;
 	height: 15rem;
 	display: flex;
 	align-items: center;
@@ -480,8 +495,9 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	top: 0;
 	left: 0;
 	border-radius: 0.5rem;
-	border: 0.1rem solid var(--color-brand-1);
+	border: 0.2rem solid var(--color-white);
 	background-color: var(--color-white);
+    box-shadow: 0.1rem 0.1rem 0.4rem 0.1rem rgba(0,0,0,0.5);
 	backface-visibility: hidden;
 }
 
@@ -500,21 +516,29 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	align-items: center;
 	color: var(--color-white);
 	font-size: 4rem;
-	background-color: var(--color-brand-1);
+	border-radius: 0.5rem;
+	background-color: var(--color-pokemon-3);
 }
 
 .card-front {
 	display: flex;
+	padding: 0.5rem;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	opacity: 1;
+}
+
+.card-front__name {
+	color: var(--color-pokemon-3);
 }
 
 .card.covered .card-front {
 	opacity: 0;
 }
 
-.card-front__inner {
+.card-front__image {
+	width: 100%;
 }
 
 

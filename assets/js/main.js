@@ -1,9 +1,3 @@
-const urls = {
-	4: "https://api.jsonbin.io/b/5cd2137a4c004c0eb4950d03",
-	6: "https://api.jsonbin.io/b/5cd213c964d4fc359ead3a5a",
-	8: "https://api.jsonbin.io/b/5cd213f6c07f283511e1c251",
-};
-
 const app = new Vue({
 	el: "#app",
 	data() {
@@ -16,13 +10,13 @@ const app = new Vue({
 				default: {
 					attempts: 0,
 					fails: 0,
-					opportunities: 4,
+					opportunities: 5,
 					difficult: false,
 				},
 				changed: {
 					attempts: 0,
 					fails: 0,
-					opportunities: 4,
+					opportunities: 5,
 					difficult: false,
 				},
 			},
@@ -56,17 +50,89 @@ const app = new Vue({
 		selectedDeck: {
 			immediate: true,
 			handler() {
-				fetch(urls[this.selectedDeck])
-					.then((res) => res.json())
-					.then((cards) => {
-						this.cards = cards;
-						this.resetGame();
-					});
+				this.resetGame();
 			},
 		},
 	},
 	methods: {
-		randomCards() {
+		getRandomInteger(min, max) {
+			const numberRandom = Math.floor(Math.random() * (max - min)) + min;
+			// console.log("Number integer random:", numberRandom);
+
+			return numberRandom;
+		},
+		async getPokemon(id) {
+			try {
+				const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+
+				const data = await res.json();
+				// console.log(data);
+
+				return data;
+			} catch (error) {
+				console.warn(error);
+			}
+		},
+		createPokemon(data) {
+			const pokemon = {
+				id: data.id,
+				name: data.name,
+				images: {
+					game: {
+						front: data.sprites.front_default,
+						back: data.sprites.back_default,
+					},
+					png: {
+						front: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
+					},
+					svg: {
+						front: data.sprites.other.dream_world.front_default,
+					},
+				},
+			};
+			// console.log(pokemon);
+
+			return pokemon;
+		},
+		createPairs(pokemons) {
+			let pokemonPairs = [];
+			for (let index = 0; index < pokemons.length; index++) {
+				const pokemon = pokemons[index];
+
+				const pokemonFront = {
+					id: pokemon.id,
+					name: pokemon.name,
+					image: pokemon.images.game.front,
+				};
+				const pokemonBack = {
+					id: pokemon.id,
+					name: pokemon.name,
+					image: pokemon.images.game.back,
+				};
+
+				pokemonPairs.push(pokemonFront);
+				pokemonPairs.push(pokemonBack);
+			}
+			// console.log("Pokemon pairs", pokemonPairs);
+
+			return pokemonPairs;
+		},
+		async getPokemons(numberMax) {
+			let pokemonList = [];
+			for (let index = 0; index < numberMax; index++) {
+				const pokemonRandom = await this.getRandomInteger(1, 152);
+				const pokemonData = await this.getPokemon(pokemonRandom);
+				const pokemonDataFormatted = await this.createPokemon(pokemonData);
+				pokemonList.push(pokemonDataFormatted);
+			}
+			// console.log(`Get ${numberMax} pokemons`, pokemonList);
+
+			return pokemonList;
+		},
+		async randomCards() {
+			const pokemonsList = await this.getPokemons(this.selectedDeck);
+			const pokemonsPairs = this.createPairs(pokemonsList);
+			this.cards = pokemonsPairs;
 			this.cards.sort(() => Math.random() - 0.5);
 		},
 		selectCard(card) {
@@ -78,7 +144,7 @@ const app = new Vue({
 					const [card1, card2] = this.selectedCards;
 
 					if (card1 !== card2) {
-						if (card1.pair === card2.pair) {
+						if (card1.id === card2.id) {
 							this.pairedCards = this.pairedCards.concat(
 								this.selectedCards
 							);
@@ -123,6 +189,7 @@ const app = new Vue({
 			this.resetData();
 			this.resetResult();
 			this.gameReset = true;
+			this.updatedOportunities();
 			this.lastOpportunity = false;
 		},
 		checkResultGame(coveredCards) {
@@ -140,17 +207,22 @@ const app = new Vue({
 			}
 		},
 		checkLastOpportunity() {
-			this.selectedDeck == 8 && this.gameData.changed.opportunities <= 1
+			this.gameData.changed.difficult &&
+			this.gameData.changed.opportunities <= 1
 				? (this.lastOpportunity = true)
 				: false;
 		},
 		checkDifficulty() {
-			if (this.selectedDeck == 8) {
+			if (this.selectedDeck >= 8) {
 				this.gameData.changed.difficult = true;
 				this.checkOportunities();
 			} else {
 				this.gameData.changed.difficult = false;
 			}
 		},
+		updatedOportunities() {
+			this.gameData.default.opportunities = (this.selectedDeck * 2) - 6;
+			this.gameData.changed.opportunities = (this.selectedDeck * 2) - 6;
+		}
 	},
 });

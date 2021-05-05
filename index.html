@@ -7,12 +7,14 @@
 		<title>
 			Parejas
 		</title>
-		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="assets/css/styles.css" />
 	</head>
 
 	<body>
 		<div id="app" v-cloak>
 			<div class="page-content">
+				<img class="logo-pokemon" src="assets/images/pokemon-logo.svg" alt="">
+
 				<h1 class="page-title">
 					El juego de las parejas
 				</h1>
@@ -87,6 +89,29 @@
 							8
 						</span>
 					</label>
+					<label for="gameOption4" class="game-options__label">
+						<input
+							id="gameOption4"
+							class="game-options__input"
+							type="radio"
+							value="10"
+							v-model="selectedDeck"
+						/>
+						<svg width="20px" height="20px" viewBox="0 0 20 20">
+							<circle cx="10" cy="10" r="9"></circle>
+							<path
+								d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"
+								class="inner"
+							></path>
+							<path
+								d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"
+								class="outer"
+							></path>
+						</svg>
+						<span class="game-options__text">
+							10
+						</span>
+					</label>
 				</form>
 
 				<div class="game-data">
@@ -105,7 +130,10 @@
 					</p>
 				</div>
 
-				<ul class="pokemons-wrapper four-items">
+				<ul
+					class="list-cards"
+					:class="{'list-cards--8': (selectedDeck == 8), 'list-cards--10': (selectedDeck > 8)}"
+				>
 					<li
 						v-for="card in cards"
 						:key="card.image"
@@ -114,7 +142,10 @@
 						class="card"
 					>
 						<div class="card__face card-front">
-							<img :src="card.image" class="card-front__inner" />
+							<h3 class="card-front__name">
+								{{ card.name }}
+							</h3>
+							<img :src="card.image" class="card-front__image" />
 						</div>
 						<div class="card__face card-back">
 							<div class="card-back__inner">?</div>
@@ -150,6 +181,6 @@
 		</div>
 
 		<script src="https://unpkg.com/vue"></script>
-		<script src="main.js"></script>
+		<script src="assets/js/main.js"></script>
 	</body>
 </html>
