@@ -586,11 +586,11 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	color: var(--color-white);
 	opacity: 0;
 	transform: translateY(100%);
+	box-shadow: 0.2rem 0.2rem 0.4rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
 .game-result--win {
 	background-color: var(--color-success);
-	filter: brightness(0.9);
 }
 
 .game-result--over {
