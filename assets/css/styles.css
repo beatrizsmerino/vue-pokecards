@@ -241,25 +241,25 @@ body {
 https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/shakeY.css
 */
 @keyframes shakeY {
-  from,
-  to {
-    transform: translate3d(0, 0, 0);
-  }
+	from,
+	to {
+		transform: translate3d(0, 0, 0);
+	}
 
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    transform: translate3d(0, -0.5rem, 0);
-  }
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: translate3d(0, -0.5rem, 0);
+	}
 
-  20%,
-  40%,
-  60%,
-  80% {
-    transform: translate3d(0, 0.5rem, 0);
-  }
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: translate3d(0, 0.5rem, 0);
+	}
 }
 
 
@@ -497,7 +497,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	border-radius: 0.5rem;
 	border: 0.2rem solid var(--color-white);
 	background-color: var(--color-white);
-    box-shadow: 0.1rem 0.1rem 0.4rem 0.1rem rgba(0,0,0,0.5);
+	box-shadow: 0.1rem 0.1rem 0.4rem 0.1rem rgba(0, 0, 0, 0.5);
 	backface-visibility: hidden;
 }
 
