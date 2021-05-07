@@ -213,7 +213,7 @@ body:after {
 	left: 0;
 	z-index: -1;
 	background-color: var(--color-pokemon-2);
-	opacity: 0.7;
+	opacity: 0.8;
 }
 
 [v-cloak] {
