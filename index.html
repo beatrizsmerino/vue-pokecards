@@ -131,24 +131,24 @@
 				</div>
 
 				<ul
-					class="list-cards"
-					:class="{'list-cards--8': (selectedDeck == 8), 'list-cards--10': (selectedDeck > 8)}"
+					class="game-list-cards"
+					:class="{'game-list-cards--8': (selectedDeck == 8), 'game-list-cards--10': (selectedDeck > 8)}"
 				>
 					<li
 						v-for="card in cards"
 						:key="card.image"
 						@click="selectCard(card)"
-						:class="{'covered': coveredCards.includes(card)}"
-						class="card"
+						:class="{'is-covered': coveredCards.includes(card)}"
+						class="game-card"
 					>
-						<div class="card__face card-front">
-							<h3 class="card-front__name">
+						<div class="game-card__face game-card-front">
+							<h3 class="game-card-front__name">
 								{{ card.name }}
 							</h3>
-							<img :src="card.image" class="card-front__image" />
+							<img :src="card.image" class="game-card-front__image" />
 						</div>
-						<div class="card__face card-back">
-							<div class="card-back__inner">?</div>
+						<div class="game-card__face game-card-back">
+							<div class="game-card-back__inner">?</div>
 						</div>
 					</li>
 				</ul>
