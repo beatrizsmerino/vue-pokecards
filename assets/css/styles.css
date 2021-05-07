@@ -428,6 +428,9 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .game-data__item {
 	padding: 0.8rem 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: var(--color-white);
 }
 
@@ -440,13 +443,13 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .game-data__opportunities {
 	color: var(--color-white);
-	border: 0.1rem solid var(--color-white);
+	border: 0.2rem solid var(--color-white);
 	background-color: var(--color-gray-dark);
 }
 
 .game-data__opportunities--error {
 	color: var(--color-white);
-	border: 0.1rem solid var(--color-white);
+	border: 0.2rem solid var(--color-white);
 	background-color: var(--color-error);
 	-webkit-animation: shakeY 1s ease-in-out forwards;
 	animation: shakeY 1s ease-in-out forwards;
@@ -454,7 +457,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .game-data__fails {
 	color: var(--color-white);
-	border: 0.1rem solid var(--color-white);
+	border: 0.2rem solid var(--color-white);
 	background-color: var(--color-error--darken);
 }
 
