@@ -128,6 +128,11 @@
 					>
 						Oportunidades: {{ gameData.changed.opportunities }}
 					</p>
+					<div class="game-data__current-date">
+						<time :datetime="currentDate.init">
+							{{ currentDate.init }}
+						</time>
+					</div>
 				</div>
 
 				<ul

@@ -27,6 +27,9 @@ const app = new Vue({
 			},
 			gameReset: false,
 			lastOpportunity: false,
+			currentDate: {
+				init: new Date(),
+			},
 		};
 	},
 	computed: {
@@ -53,6 +56,12 @@ const app = new Vue({
 				this.resetGame();
 			},
 		},
+		"currentDate.init": {
+			immediate: true,
+			handler() {
+				this.getCurrentDate();
+			},
+		}
 	},
 	methods: {
 		getRandomInteger(min, max) {
@@ -223,6 +232,11 @@ const app = new Vue({
 		updatedOportunities() {
 			this.gameData.default.opportunities = (this.selectedDeck * 2) - 6;
 			this.gameData.changed.opportunities = (this.selectedDeck * 2) - 6;
-		}
+		},
+		getCurrentDate() {
+			setInterval(() => {
+				this.currentDate.init = new Date();
+			}, 1000);
+		},
 	},
 });
