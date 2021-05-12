@@ -27,14 +27,9 @@ const app = new Vue({
 			},
 			gameReset: false,
 			lastOpportunity: false,
-			currentDate: {
-				init: new Date(),
-				year: "YYYY",
-				month: "MM",
-				day: "DD",
-				hours: "00",
-				minutes: "00",
-				seconds: "00",
+			current: {
+				time: "00:00:00",
+				date: "DD/MM/YYYY",
 			},
 		};
 	},
@@ -62,46 +57,16 @@ const app = new Vue({
 				this.resetGame();
 			},
 		},
-		"currentDate.init": {
+		"current.date": {
 			immediate: true,
 			handler() {
-				this.getCurrentDate();
+				this.getCurrentDateFormat();
 			},
 		},
-		"currentDate.year": {
+		"current.time": {
 			immediate: true,
 			handler() {
-				this.getCurrentYear();
-			},
-		},
-		"currentDate.month": {
-			immediate: true,
-			handler() {
-				this.getCurrentMonth();
-			},
-		},
-		"currentDate.day": {
-			immediate: true,
-			handler() {
-				this.getCurrentDay();
-			},
-		},
-		"currentDate.hours": {
-			immediate: true,
-			handler() {
-				this.getCurrentHours();
-			},
-		},
-		"currentDate.minutes": {
-			immediate: true,
-			handler() {
-				this.getCurrentMinutes();
-			},
-		},
-		"currentDate.seconds": {
-			immediate: true,
-			handler() {
-				this.getCurrentSeconds();
+				this.getCurrentTimeFormat();
 			},
 		},
 	},
@@ -276,55 +241,44 @@ const app = new Vue({
 			this.gameData.changed.opportunities = (this.selectedDeck * 2) - 6;
 		},
 		getCurrentDate() {
-			setInterval(() => {
-				this.currentDate.init = new Date();
-			}, 1000);
+			return new Date();
 		},
 		getCurrentYear() {
-			setInterval(() => {
-				this.currentDate.year = this.currentDate.init
-					.getFullYear()
-					.toString();
-			}, 1000);
+			return this.getCurrentDate().getFullYear().toString();
 		},
 		getCurrentMonth() {
-			setInterval(() => {
-				this.currentDate.month =
-					(this.currentDate.init.getMonth() + 1).toString().length < 2
-						? 0 + (this.currentDate.init.getMonth() + 1).toString()
-						: (this.currentDate.init.getMonth() + 1).toString();
-			}, 1000);
+			return (this.getCurrentDate().getMonth() + 1).toString().length < 2
+				? 0 + (this.getCurrentDate().getMonth() + 1).toString()
+				: (this.getCurrentDate().getMonth() + 1).toString();
 		},
 		getCurrentDay() {
-			setInterval(() => {
-				this.currentDate.day =
-					this.currentDate.init.getDate().toString().length < 2
-						? 0 + this.currentDate.init.getDate().toString()
-						: this.currentDate.init.getDate().toString();
-			}, 1000);
+			return this.getCurrentDate().getDate().toString().length < 2
+				? 0 + this.getCurrentDate().getDate().toString()
+				: this.getCurrentDate().getDate().toString();
 		},
 		getCurrentHours() {
-			setInterval(() => {
-				this.currentDate.hours =
-					(this.currentDate.init.getHours() + 1).toString().length < 2
-						? 0 + this.currentDate.init.getHours().toString()
-						: this.currentDate.init.getHours().toString();
-			}, 1000);
+			return (this.getCurrentDate().getHours() + 1).toString().length < 2
+				? 0 + this.getCurrentDate().getHours().toString()
+				: this.getCurrentDate().getHours().toString();
 		},
 		getCurrentMinutes() {
-			setInterval(() => {
-				this.currentDate.minutes =
-					this.currentDate.init.getMinutes().toString().length < 2
-						? 0 + this.currentDate.init.getMinutes().toString()
-						: this.currentDate.init.getMinutes().toString();
-			}, 1000);
+			return this.getCurrentDate().getMinutes().toString().length < 2
+				? 0 + this.getCurrentDate().getMinutes().toString()
+				: this.getCurrentDate().getMinutes().toString();
 		},
 		getCurrentSeconds() {
+			return this.getCurrentDate().getSeconds().toString().length < 2
+				? 0 + this.getCurrentDate().getSeconds().toString()
+				: this.getCurrentDate().getSeconds().toString();
+		},
+		getCurrentDateFormat() {
 			setInterval(() => {
-				this.currentDate.seconds =
-					this.currentDate.init.getSeconds().toString().length < 2
-						? 0 + this.currentDate.init.getSeconds().toString()
-						: this.currentDate.init.getSeconds().toString();
+				this.current.date = `${this.getCurrentDay()}/${this.getCurrentMonth()}/${this.getCurrentYear()}`;
+			}, 1000);
+		},
+		getCurrentTimeFormat() {
+			setInterval(() => {
+				this.current.time = `${this.getCurrentHours()}:${this.getCurrentMinutes()}:${this.getCurrentSeconds()}`;
 			}, 1000);
 		},
 	},
