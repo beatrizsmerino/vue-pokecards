@@ -29,6 +29,12 @@ const app = new Vue({
 			lastOpportunity: false,
 			currentDate: {
 				init: new Date(),
+				year: "YYYY",
+				month: "MM",
+				day: "DD",
+				hours: "00",
+				minutes: "00",
+				seconds: "00",
 			},
 		};
 	},
@@ -61,7 +67,43 @@ const app = new Vue({
 			handler() {
 				this.getCurrentDate();
 			},
-		}
+		},
+		"currentDate.year": {
+			immediate: true,
+			handler() {
+				this.getCurrentYear();
+			},
+		},
+		"currentDate.month": {
+			immediate: true,
+			handler() {
+				this.getCurrentMonth();
+			},
+		},
+		"currentDate.day": {
+			immediate: true,
+			handler() {
+				this.getCurrentDay();
+			},
+		},
+		"currentDate.hours": {
+			immediate: true,
+			handler() {
+				this.getCurrentHours();
+			},
+		},
+		"currentDate.minutes": {
+			immediate: true,
+			handler() {
+				this.getCurrentMinutes();
+			},
+		},
+		"currentDate.seconds": {
+			immediate: true,
+			handler() {
+				this.getCurrentSeconds();
+			},
+		},
 	},
 	methods: {
 		getRandomInteger(min, max) {
@@ -236,6 +278,53 @@ const app = new Vue({
 		getCurrentDate() {
 			setInterval(() => {
 				this.currentDate.init = new Date();
+			}, 1000);
+		},
+		getCurrentYear() {
+			setInterval(() => {
+				this.currentDate.year = this.currentDate.init
+					.getFullYear()
+					.toString();
+			}, 1000);
+		},
+		getCurrentMonth() {
+			setInterval(() => {
+				this.currentDate.month =
+					(this.currentDate.init.getMonth() + 1).toString().length < 2
+						? 0 + (this.currentDate.init.getMonth() + 1).toString()
+						: (this.currentDate.init.getMonth() + 1).toString();
+			}, 1000);
+		},
+		getCurrentDay() {
+			setInterval(() => {
+				this.currentDate.day =
+					this.currentDate.init.getDate().toString().length < 2
+						? 0 + this.currentDate.init.getDate().toString()
+						: this.currentDate.init.getDate().toString();
+			}, 1000);
+		},
+		getCurrentHours() {
+			setInterval(() => {
+				this.currentDate.hours =
+					(this.currentDate.init.getHours() + 1).toString().length < 2
+						? 0 + this.currentDate.init.getHours().toString()
+						: this.currentDate.init.getHours().toString();
+			}, 1000);
+		},
+		getCurrentMinutes() {
+			setInterval(() => {
+				this.currentDate.minutes =
+					this.currentDate.init.getMinutes().toString().length < 2
+						? 0 + this.currentDate.init.getMinutes().toString()
+						: this.currentDate.init.getMinutes().toString();
+			}, 1000);
+		},
+		getCurrentSeconds() {
+			setInterval(() => {
+				this.currentDate.seconds =
+					this.currentDate.init.getSeconds().toString().length < 2
+						? 0 + this.currentDate.init.getSeconds().toString()
+						: this.currentDate.init.getSeconds().toString();
 			}, 1000);
 		},
 	},

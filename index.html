@@ -129,8 +129,11 @@
 						Oportunidades: {{ gameData.changed.opportunities }}
 					</p>
 					<div class="game-data__current-date">
-						<time :datetime="currentDate.init">
-							{{ currentDate.init }}
+						<time :datetime="`${currentDate.day}/${currentDate.month}/${currentDate.year}`">
+							{{ currentDate.day }}/{{ currentDate.month }}/{{ currentDate.year }}
+						</time>
+						<time :datetime="`${currentDate.hours}:${currentDate.minutes}:${currentDate.seconds}`">
+							{{ currentDate.hours }}:{{ currentDate.minutes }}:{{ currentDate.seconds }}
 						</time>
 					</div>
 				</div>
