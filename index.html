@@ -138,6 +138,14 @@
 					>
 						Oportunidades: {{ gameData.changed.opportunities }}
 					</p>
+					<button class="button button--color" @click="checkCounter">
+						<span v-if="gameData.changed.counter" class="game-data__item game-data__counter">
+							{{ counter.changed }}
+						</span>
+						<span v-else>
+							Iniciar contador
+						</span>
+					</button>
 				</div>
 
 				<ul

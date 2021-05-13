@@ -12,12 +12,14 @@ const app = new Vue({
 					fails: 0,
 					opportunities: 5,
 					difficult: false,
+					counter: false,
 				},
 				changed: {
 					attempts: 0,
 					fails: 0,
 					opportunities: 5,
 					difficult: false,
+					counter: false,
 				},
 			},
 			gameResult: {
@@ -30,6 +32,10 @@ const app = new Vue({
 			current: {
 				time: "00:00:00",
 				date: "DD/MM/YYYY",
+			},
+			counter: {
+				default: "00:00",
+				changed: "00:00",
 			},
 		};
 	},
@@ -67,6 +73,16 @@ const app = new Vue({
 			immediate: true,
 			handler() {
 				this.getCurrentTimeFormat();
+			},
+		},
+		"counter.changed": {
+			immediate: true,
+			handler() {
+				if (this.gameData.changed) {
+					this.setCounter();
+				} else {
+					this.resetCounter();
+				}
 			},
 		},
 	},
@@ -283,6 +299,25 @@ const app = new Vue({
 
 				this.current.time = `${hours}:${minutes}:${seconds}`;
 			}, 1000);
+		},
+		checkCounter() {
+			this.gameData.changed.counter = !this.gameData.changed.counter;
+			this.setCounter();
+		},
+		setCounter() {
+			if (this.gameData.changed.counter) {
+				setInterval(() => {
+					this.counter.changed = this.setCounterdown();
+				}, 1000);
+			} else {
+				this.counter.changed = this.counter.default;
+			}
+		},
+		setCounterdown() {
+			const minutes = this.checkDigits(this.getCurrentMinutes());
+			const seconds = this.checkDigits(this.getCurrentSeconds());
+
+			return (this.counter.changed = `${minutes}:${seconds}`);
 		},
 	},
 });

@@ -519,7 +519,12 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	background-color: var(--color-error--darken);
 }
 
-
+.game-data__counter {
+	padding: 0;
+	display: inline-block;
+	color: var(--color-white);
+	background-color: transparent;
+}
 
 
 
