@@ -278,6 +278,27 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 
 
+/*** CURRENT DATE ***/
+/**************************/
+
+.current-date {
+	padding: 0.5rem 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;;
+	position: fixed;
+	top: 0;
+	right: 0;
+	text-align: right;
+	line-height: 120%;
+	color: var(--color-pokemon-3);
+	background-color: var(--color-white);
+}
+
+
+
+
+
 /*** LOGO ***/
 /**************************/
 
@@ -459,20 +480,6 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	color: var(--color-white);
 	border: 0.2rem solid var(--color-white);
 	background-color: var(--color-error--darken);
-}
-
-.game-data__current-date {
-	padding: 0.5rem 1rem;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;;
-	position: fixed;
-	top: 0;
-	right: 0;
-	text-align: right;
-	line-height: 120%;
-	color: var(--color-pokemon-3);
-	background-color: var(--color-white);
 }
 
 
