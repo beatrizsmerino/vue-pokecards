@@ -282,7 +282,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 /**************************/
 
 .current-date {
-	padding: 0.5rem 1rem;
+	padding: 1.5rem 2rem;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;;
@@ -292,7 +292,21 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	text-align: right;
 	line-height: 120%;
 	color: var(--color-pokemon-3);
-	background-color: var(--color-white);
+}
+
+.current-date:after {
+	width: 17rem;
+	height: 8.5rem;
+	content: '';
+	display: inline-block;
+	position: absolute;
+	top: -0.1rem;
+	right: -0.1rem;
+	z-index: -1;
+	background-image: url('../images/bg-date.svg');
+	background-position: top right;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 
