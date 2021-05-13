@@ -27,6 +27,10 @@ const app = new Vue({
 			},
 			gameReset: false,
 			lastOpportunity: false,
+			current: {
+				time: "00:00:00",
+				date: "DD/MM/YYYY",
+			},
 		};
 	},
 	computed: {
@@ -51,6 +55,18 @@ const app = new Vue({
 			immediate: true,
 			handler() {
 				this.resetGame();
+			},
+		},
+		"current.date": {
+			immediate: true,
+			handler() {
+				this.getCurrentDateFormat();
+			},
+		},
+		"current.time": {
+			immediate: true,
+			handler() {
+				this.getCurrentTimeFormat();
 			},
 		},
 	},
@@ -223,6 +239,50 @@ const app = new Vue({
 		updatedOportunities() {
 			this.gameData.default.opportunities = (this.selectedDeck * 2) - 6;
 			this.gameData.changed.opportunities = (this.selectedDeck * 2) - 6;
-		}
+		},
+		getCurrentDate() {
+			return new Date();
+		},
+		getCurrentYear() {
+			return this.getCurrentDate().getFullYear();
+		},
+		getCurrentMonth() {
+			return this.getCurrentDate().getMonth() + 1;
+		},
+		getCurrentDay() {
+			return this.getCurrentDate().getDate();
+		},
+		getCurrentHours() {
+			return this.getCurrentDate().getHours();
+		},
+		getCurrentMinutes() {
+			return this.getCurrentDate().getMinutes();
+		},
+		getCurrentSeconds() {
+			return this.getCurrentDate().getSeconds();
+		},
+		checkDigits(number) {
+			return number.toString().length < 2
+				? 0 + number.toString()
+				: number.toString();
+		},
+		getCurrentDateFormat() {
+			setInterval(() => {
+				const day = this.checkDigits(this.getCurrentDay());
+				const month = this.checkDigits(this.getCurrentMonth());
+				const year = this.checkDigits(this.getCurrentYear());
+
+				this.current.date = `${day}/${month}/${year}`;
+			}, 1000);
+		},
+		getCurrentTimeFormat() {
+			setInterval(() => {
+				const hours = this.checkDigits(this.getCurrentHours());
+				const minutes = this.checkDigits(this.getCurrentMinutes());
+				const seconds = this.checkDigits(this.getCurrentSeconds());
+
+				this.current.time = `${hours}:${minutes}:${seconds}`;
+			}, 1000);
+		},
 	},
 });

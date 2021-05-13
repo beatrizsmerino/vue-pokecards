@@ -13,6 +13,15 @@
 	<body>
 		<div id="app" v-cloak>
 			<div class="page-content">
+				<div class="current-date">
+					<time :datetime="`${current.date}`">
+						{{ current.date }}
+					</time>
+					<time :datetime="`${current.time}`">
+						{{ current.time }}
+					</time>
+				</div>
+
 				<img class="logo-pokemon" src="assets/images/pokemon-logo.svg" alt="">
 
 				<h1 class="page-title">
