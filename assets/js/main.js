@@ -11,15 +11,13 @@ const app = new Vue({
 					attempts: 0,
 					fails: 0,
 					opportunities: 5,
-					difficult: false,
-					counter: false,
+					difficult: false
 				},
 				changed: {
 					attempts: 0,
 					fails: 0,
 					opportunities: 5,
-					difficult: false,
-					counter: false,
+					difficult: false
 				},
 			},
 			gameResult: {
@@ -34,6 +32,8 @@ const app = new Vue({
 				date: "DD/MM/YYYY",
 			},
 			counter: {
+				init: false,
+				disabled: false,
 				default: "00:00",
 				changed: "00:00",
 			},
@@ -75,16 +75,16 @@ const app = new Vue({
 				this.getCurrentTimeFormat();
 			},
 		},
-		"counter.changed": {
+		"counter.init": {
 			immediate: true,
 			handler() {
-				if (this.gameData.changed) {
-					this.setCounter();
+				if (this.counter.init) {
+					this.setCounterdown();
 				} else {
-					this.resetCounter();
+					this.counter.changed = this.counter.default;
 				}
-			},
-		},
+			}
+		}
 	},
 	methods: {
 		getRandomInteger(min, max) {
@@ -168,6 +168,10 @@ const app = new Vue({
 			this.cards.sort(() => Math.random() - 0.5);
 		},
 		selectCard(card) {
+			if(!this.counter.init){
+				this.counter.disabled = true;
+			}
+
 			if (!this.gameResult.finish) {
 				this.selectedCards.push(card);
 
@@ -223,6 +227,8 @@ const app = new Vue({
 			this.gameReset = true;
 			this.updatedOportunities();
 			this.lastOpportunity = false;
+			this.counter.init = false;
+			this.counter.disabled = false;
 		},
 		checkResultGame(coveredCards) {
 			if (coveredCards.length == 0) {
@@ -300,24 +306,35 @@ const app = new Vue({
 				this.current.time = `${hours}:${minutes}:${seconds}`;
 			}, 1000);
 		},
-		checkCounter() {
-			this.gameData.changed.counter = !this.gameData.changed.counter;
-			this.setCounter();
-		},
 		setCounter() {
-			if (this.gameData.changed.counter) {
-				setInterval(() => {
-					this.counter.changed = this.setCounterdown();
-				}, 1000);
-			} else {
-				this.counter.changed = this.counter.default;
-			}
+			this.counter.init = !this.counter.init;
 		},
 		setCounterdown() {
-			const minutes = this.checkDigits(this.getCurrentMinutes());
-			const seconds = this.checkDigits(this.getCurrentSeconds());
+			const seconds = 60;
+			const end = this.getCurrentDate().getTime() + seconds * 1000;
 
-			return (this.counter.changed = `${minutes}:${seconds}`);
+			let timeout = setInterval(() => {
+				let counter = Math.floor((end - this.getCurrentDate().getTime()) / 1000);
+				if (counter < 0) {
+					counter = 0;
+				}
+
+				this.counter.changed = `${Math.floor(counter / 60)}:${("00" + Math.floor(counter % 60)).slice(-2)}`;
+
+				if (counter === 0 && !this.gameResult.finish) {
+					this.gameResult.finish = true;
+					this.gameResult.over = true;
+				}
+
+				if(this.gameResult.finish){
+					clearTimeout(timeout);
+				}
+
+				if (counter === 0 || !this.counter.init) {
+					this.counter.changed = this.counter.default;
+					clearTimeout(timeout);
+				};
+			}, 300);
 		},
 	},
 });

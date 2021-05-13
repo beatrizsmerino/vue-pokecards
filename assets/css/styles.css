@@ -369,6 +369,11 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	background-color: var(--color-black);
 }
 
+.button:disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
 .button--color {
 	background-color: var(--color-pokemon-3);
 }
