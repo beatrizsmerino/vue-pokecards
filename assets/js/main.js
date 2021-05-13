@@ -244,41 +244,44 @@ const app = new Vue({
 			return new Date();
 		},
 		getCurrentYear() {
-			return this.getCurrentDate().getFullYear().toString();
+			return this.getCurrentDate().getFullYear();
 		},
 		getCurrentMonth() {
-			return (this.getCurrentDate().getMonth() + 1).toString().length < 2
-				? 0 + (this.getCurrentDate().getMonth() + 1).toString()
-				: (this.getCurrentDate().getMonth() + 1).toString();
+			return this.getCurrentDate().getMonth() + 1;
 		},
 		getCurrentDay() {
-			return this.getCurrentDate().getDate().toString().length < 2
-				? 0 + this.getCurrentDate().getDate().toString()
-				: this.getCurrentDate().getDate().toString();
+			return this.getCurrentDate().getDate();
 		},
 		getCurrentHours() {
-			return (this.getCurrentDate().getHours() + 1).toString().length < 2
-				? 0 + this.getCurrentDate().getHours().toString()
-				: this.getCurrentDate().getHours().toString();
+			return this.getCurrentDate().getHours();
 		},
 		getCurrentMinutes() {
-			return this.getCurrentDate().getMinutes().toString().length < 2
-				? 0 + this.getCurrentDate().getMinutes().toString()
-				: this.getCurrentDate().getMinutes().toString();
+			return this.getCurrentDate().getMinutes();
 		},
 		getCurrentSeconds() {
-			return this.getCurrentDate().getSeconds().toString().length < 2
-				? 0 + this.getCurrentDate().getSeconds().toString()
-				: this.getCurrentDate().getSeconds().toString();
+			return this.getCurrentDate().getSeconds();
+		},
+		checkDigits(number) {
+			return number.toString().length < 2
+				? 0 + number.toString()
+				: number.toString();
 		},
 		getCurrentDateFormat() {
 			setInterval(() => {
-				this.current.date = `${this.getCurrentDay()}/${this.getCurrentMonth()}/${this.getCurrentYear()}`;
+				const day = this.checkDigits(this.getCurrentDay());
+				const month = this.checkDigits(this.getCurrentMonth());
+				const year = this.checkDigits(this.getCurrentYear());
+
+				this.current.date = `${day}/${month}/${year}`;
 			}, 1000);
 		},
 		getCurrentTimeFormat() {
 			setInterval(() => {
-				this.current.time = `${this.getCurrentHours()}:${this.getCurrentMinutes()}:${this.getCurrentSeconds()}`;
+				const hours = this.checkDigits(this.getCurrentHours());
+				const minutes = this.checkDigits(this.getCurrentMinutes());
+				const seconds = this.checkDigits(this.getCurrentSeconds());
+
+				this.current.time = `${hours}:${minutes}:${seconds}`;
 			}, 1000);
 		},
 	},
