@@ -10,14 +10,20 @@ const app = new Vue({
 					selectedDeck: 4,
 					attempts: 0,
 					fails: 0,
-					opportunities: 5,
+					opportunities: {
+						number: 2,
+						last: false
+					},
 					difficult: false,
 				},
 				changed: {
 					selectedDeck: 4,
 					attempts: 0,
 					fails: 0,
-					opportunities: 5,
+					opportunities: {
+						number: 2,
+						last: false
+					},
 					difficult: false,
 				},
 			},
@@ -27,7 +33,6 @@ const app = new Vue({
 				lose: false,
 			},
 			gameReset: false,
-			lastOpportunity: false,
 			current: {
 				time: "00:00:00",
 				date: "DD/MM/YYYY",
@@ -189,7 +194,7 @@ const app = new Vue({
 						} else {
 							this.gameData.changed.fails++;
 							if (this.gameData.changed.difficult) {
-								this.gameData.changed.opportunities--;
+								this.gameData.changed.opportunities.number--;
 							}
 						}
 					}
@@ -205,7 +210,8 @@ const app = new Vue({
 		resetData() {
 			this.gameData.changed.attempts = this.gameData.default.attempts;
 			this.gameData.changed.fails = this.gameData.default.fails;
-			this.gameData.changed.opportunities = this.gameData.default.opportunities;
+			this.gameData.changed.opportunities.number = this.gameData.default.opportunities.number;
+			this.gameData.changed.opportunities.last = this.gameData.default.opportunities.last;
 			this.gameData.changed.difficult = this.gameData.default.difficult;
 		},
 		resetResult() {
@@ -247,19 +253,19 @@ const app = new Vue({
 			}
 		},
 		checkOportunities() {
-			if (this.gameData.changed.opportunities == 0) {
+			if (this.gameData.changed.opportunities.number == 0) {
 				this.gameResult.finish = true;
 				this.gameResult.lose = true;
 			}
 		},
 		checkLastOpportunity() {
 			this.gameData.changed.difficult &&
-			this.gameData.changed.opportunities <= 1
-				? (this.lastOpportunity = true)
+			this.gameData.changed.opportunities.number <= 1
+				? (this.gameData.changed.opportunities.last = true)
 				: false;
 		},
 		updatedOportunities() {
-			this.gameData.changed.opportunities = (this.gameData.changed.selectedDeck * 2) - 6;;
+			this.gameData.changed.opportunities.number = (this.gameData.changed.selectedDeck * 2) - 6;;
 		},
 		getCurrentDate() {
 			return new Date();

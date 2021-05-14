@@ -142,9 +142,9 @@
 					<p
 						v-if="gameData.changed.difficult"
 						class="game-data__item game-data__opportunities"
-						:class="{'game-data__opportunities--error': lastOpportunity}"
+						:class="{'game-data__opportunities--error': gameData.changed.opportunities.last}"
 					>
-						Oportunidades: {{ gameData.changed.opportunities }}
+						Oportunidades: {{ gameData.changed.opportunities.number }}
 					</p>
 					<button
 						v-if="gameData.changed.selectedDeck > 8"
