@@ -157,13 +157,19 @@ const app = new Vue({
 			return pokemonPairs;
 		},
 		async getPokemons(numberMax) {
+			let pokemonId = [];
 			let pokemonList = [];
+			
 			for (let index = 0; index < numberMax; index++) {
 				const pokemonRandom = await this.getRandomInteger(1, 152);
-				const pokemonData = await this.getPokemon(pokemonRandom);
-				const pokemonDataFormatted = await this.createPokemon(pokemonData);
-				pokemonList.push(pokemonDataFormatted);
+				if (!pokemonId.some((item) => item == pokemonRandom)) {
+					pokemonId.push(pokemonRandom);
+					const pokemonData = await this.getPokemon(pokemonRandom);
+					const pokemonDataFormatted = await this.createPokemon(pokemonData);
+					pokemonList.push(pokemonDataFormatted);
+				}
 			}
+
 			// console.log(`Get ${numberMax} pokemons`, pokemonList);
 
 			return pokemonList;
