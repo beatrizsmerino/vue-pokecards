@@ -234,14 +234,12 @@ const app = new Vue({
 			if (coveredCards.length == 0) {
 				this.gameResult.finish = true;
 				this.gameResult.win = true;
-			} else {
-				this.gameResult.win = false;
 			}
 		},
 		checkOportunities() {
 			if (this.gameData.changed.opportunities == 0) {
-				this.gameResult.over = true;
 				this.gameResult.finish = true;
+				this.gameResult.over = true;
 			}
 		},
 		checkLastOpportunity() {
