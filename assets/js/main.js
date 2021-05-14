@@ -236,6 +236,14 @@ const app = new Vue({
 				this.gameResult.win = true;
 			}
 		},
+		checkDifficulty() {
+			if (this.selectedDeck >= 8) {
+				this.gameData.changed.difficult = true;
+				this.checkOportunities();
+			} else {
+				this.gameData.changed.difficult = false;
+			}
+		},
 		checkOportunities() {
 			if (this.gameData.changed.opportunities == 0) {
 				this.gameResult.finish = true;
@@ -247,14 +255,6 @@ const app = new Vue({
 			this.gameData.changed.opportunities <= 1
 				? (this.lastOpportunity = true)
 				: false;
-		},
-		checkDifficulty() {
-			if (this.selectedDeck >= 8) {
-				this.gameData.changed.difficult = true;
-				this.checkOportunities();
-			} else {
-				this.gameData.changed.difficult = false;
-			}
 		},
 		updatedOportunities() {
 			this.gameData.default.opportunities = (this.selectedDeck * 2) - 6;
