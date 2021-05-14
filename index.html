@@ -138,6 +138,22 @@
 					>
 						Oportunidades: {{ gameData.changed.opportunities }}
 					</p>
+					<button
+						v-if="selectedDeck > 8"
+						class="button button--color"
+						:disabled="this.counter.disabled ? '' : disabled"
+						@click="setCounter"
+					>
+						<span
+							v-if="counter.init"
+							class="game-data__item game-data__counter"
+						>
+							{{ counter.changed }}
+						</span>
+						<span v-else>
+							Iniciar contador
+						</span>
+					</button>
 				</div>
 
 				<ul
@@ -166,7 +182,7 @@
 				<button
 					@click="resetGame"
 					v-if="gameResult.finish"
-					class="game-button"
+					class="button button--game"
 				>
 					Jugar de nuevo
 				</button>
