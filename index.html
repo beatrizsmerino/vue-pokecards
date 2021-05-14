@@ -149,7 +149,7 @@
 					<button
 						v-if="gameData.changed.selectedDeck > 8"
 						class="button button--color"
-						:disabled="this.counter.disabled ? '' : disabled"
+						:disabled="counter.disabled"
 						@click="setCounter"
 					>
 						<span

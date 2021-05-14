@@ -175,14 +175,14 @@ const app = new Vue({
 			this.cards.sort(() => Math.random() - 0.5);
 		},
 		selectCard(card) {
-			if (!this.counter.init) {
-				this.counter.disabled = true;
-			}
-
 			if (!this.gameResult.finish) {
 				this.selectedCards.push(card);
 
-				if (this.selectedCards.length === 2) {
+				if (this.selectedCards.length === 1) {
+					if (!this.counter.init) {
+						this.counter.disabled = true;
+					}
+				} else if (this.selectedCards.length === 2) {
 					this.gameData.changed.attempts++;
 					const [card1, card2] = this.selectedCards;
 
