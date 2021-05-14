@@ -11,13 +11,13 @@ const app = new Vue({
 					attempts: 0,
 					fails: 0,
 					opportunities: 5,
-					difficult: false
+					difficult: false,
 				},
 				changed: {
 					attempts: 0,
 					fails: 0,
 					opportunities: 5,
-					difficult: false
+					difficult: false,
 				},
 			},
 			gameResult: {
@@ -83,8 +83,8 @@ const app = new Vue({
 				} else {
 					this.counter.changed = this.counter.default;
 				}
-			}
-		}
+			},
+		},
 	},
 	methods: {
 		getRandomInteger(min, max) {
@@ -168,7 +168,7 @@ const app = new Vue({
 			this.cards.sort(() => Math.random() - 0.5);
 		},
 		selectCard(card) {
-			if(!this.counter.init){
+			if (!this.counter.init) {
 				this.counter.disabled = true;
 			}
 
@@ -324,14 +324,14 @@ const app = new Vue({
 					this.gameResult.lose = true;
 				}
 
-				if(this.gameResult.finish){
+				if (this.gameResult.finish) {
 					clearTimeout(timeout);
 				}
 
 				if (counter === 0 || !this.counter.init) {
 					this.counter.changed = this.counter.default;
 					clearTimeout(timeout);
-				};
+				}
 			}, 300);
 		},
 	},
