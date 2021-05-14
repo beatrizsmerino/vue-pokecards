@@ -667,7 +667,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	background-color: var(--color-success);
 }
 
-.game-result--over {
+.game-result--lose {
 	background-color: var(--color-error);
 }
 

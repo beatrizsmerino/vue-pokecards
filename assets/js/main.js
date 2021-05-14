@@ -23,7 +23,7 @@ const app = new Vue({
 			gameResult: {
 				finish: false,
 				win: false,
-				over: false,
+				lose: false,
 			},
 			gameReset: false,
 			lastOpportunity: false,
@@ -209,7 +209,7 @@ const app = new Vue({
 		resetResult() {
 			this.gameResult.finish = false;
 			this.gameResult.win = false;
-			this.gameResult.over = false;
+			this.gameResult.lose = false;
 		},
 		initGame(coveredCards) {
 			if (this.gameReset) {
@@ -239,7 +239,7 @@ const app = new Vue({
 		checkOportunities() {
 			if (this.gameData.changed.opportunities == 0) {
 				this.gameResult.finish = true;
-				this.gameResult.over = true;
+				this.gameResult.lose = true;
 			}
 		},
 		checkLastOpportunity() {
@@ -321,7 +321,7 @@ const app = new Vue({
 
 				if (counter === 0 && !this.gameResult.finish) {
 					this.gameResult.finish = true;
-					this.gameResult.over = true;
+					this.gameResult.lose = true;
 				}
 
 				if(this.gameResult.finish){
