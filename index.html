@@ -44,7 +44,7 @@
 							class="game-options__input"
 							type="radio"
 							value="4"
-							v-model="selectedDeck"
+							v-model="gameData.changed.selectedDeck"
 						/>
 						<svg width="20px" height="20px" viewBox="0 0 20 20">
 							<circle cx="10" cy="10" r="9"></circle>
@@ -67,7 +67,7 @@
 							class="game-options__input"
 							type="radio"
 							value="6"
-							v-model="selectedDeck"
+							v-model="gameData.changed.selectedDeck"
 						/>
 						<svg width="20px" height="20px" viewBox="0 0 20 20">
 							<circle cx="10" cy="10" r="9"></circle>
@@ -90,7 +90,7 @@
 							class="game-options__input"
 							type="radio"
 							value="8"
-							v-model="selectedDeck"
+							v-model="gameData.changed.selectedDeck"
 						/>
 						<svg width="20px" height="20px" viewBox="0 0 20 20">
 							<circle cx="10" cy="10" r="9"></circle>
@@ -113,7 +113,7 @@
 							class="game-options__input"
 							type="radio"
 							value="10"
-							v-model="selectedDeck"
+							v-model="gameData.changed.selectedDeck"
 						/>
 						<svg width="20px" height="20px" viewBox="0 0 20 20">
 							<circle cx="10" cy="10" r="9"></circle>
@@ -147,7 +147,7 @@
 						Oportunidades: {{ gameData.changed.opportunities }}
 					</p>
 					<button
-						v-if="selectedDeck > 8"
+						v-if="gameData.changed.selectedDeck > 8"
 						class="button button--color"
 						:disabled="this.counter.disabled ? '' : disabled"
 						@click="setCounter"
@@ -166,7 +166,7 @@
 
 				<ul
 					class="game-list-cards"
-					:class="{'game-list-cards--8': (selectedDeck == 8), 'game-list-cards--10': (selectedDeck > 8)}"
+					:class="{'game-list-cards--8': (gameData.changed.selectedDeck == 8), 'game-list-cards--10': (gameData.changed.selectedDeck > 8)}"
 				>
 					<li
 						v-for="card in cards"

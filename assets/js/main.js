@@ -2,18 +2,19 @@ const app = new Vue({
 	el: "#app",
 	data() {
 		return {
-			selectedDeck: 4,
 			cards: [],
 			pairedCards: [],
 			selectedCards: [],
 			gameData: {
 				default: {
+					selectedDeck: 4,
 					attempts: 0,
 					fails: 0,
 					opportunities: 5,
 					difficult: false,
 				},
 				changed: {
+					selectedDeck: 4,
 					attempts: 0,
 					fails: 0,
 					opportunities: 5,
@@ -57,9 +58,10 @@ const app = new Vue({
 		},
 	},
 	watch: {
-		selectedDeck: {
+		"gameData.changed.selectedDeck": {
 			immediate: true,
-			handler() {
+			handler(newValue) {
+				this.gameData.changed.selectedDeck = parseInt(newValue);
 				this.resetGame();
 			},
 		},
@@ -162,7 +164,7 @@ const app = new Vue({
 			return pokemonList;
 		},
 		async randomCards() {
-			const pokemonsList = await this.getPokemons(this.selectedDeck);
+			const pokemonsList = await this.getPokemons(this.gameData.changed.selectedDeck);
 			const pokemonsPairs = this.createPairs(pokemonsList);
 			this.cards = pokemonsPairs;
 			this.cards.sort(() => Math.random() - 0.5);
@@ -237,7 +239,7 @@ const app = new Vue({
 			}
 		},
 		checkDifficulty() {
-			if (this.selectedDeck >= 8) {
+			if (this.gameData.changed.selectedDeck >= 8) {
 				this.gameData.changed.difficult = true;
 				this.checkOportunities();
 			} else {
@@ -257,8 +259,7 @@ const app = new Vue({
 				: false;
 		},
 		updatedOportunities() {
-			this.gameData.default.opportunities = (this.selectedDeck * 2) - 6;
-			this.gameData.changed.opportunities = (this.selectedDeck * 2) - 6;
+			this.gameData.changed.opportunities = (this.gameData.changed.selectedDeck * 2) - 6;;
 		},
 		getCurrentDate() {
 			return new Date();
