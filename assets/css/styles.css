@@ -339,7 +339,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 }
 
 .page-content {
-	margin: 8rem 2rem;
+	margin: 8rem 2rem 6rem;
 	display: flex;
 	flex-direction: column;
 }
@@ -541,7 +541,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 .game-list-cards {
 	max-width: 50rem;
-	margin: 2rem auto 4rem;
+	margin: 2rem auto;
 	padding: 0;
 	display: flex;
 	justify-content: center;
@@ -650,12 +650,12 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 .game-result {
 	width: 100%;
 	margin: 0 auto;
-	padding: 2rem 2rem;
+	padding: 1.2rem 2rem;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	text-align: center;
-	font-size: 3rem;
+	font-size: 2.5rem;
 	font-weight: bold;
 	color: var(--color-white);
 	opacity: 0;
@@ -664,6 +664,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 }
 
 .game-result--win {
+	color: var(--color-gray-dark);
 	background-color: var(--color-success);
 }
 
