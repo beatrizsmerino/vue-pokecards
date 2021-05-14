@@ -172,7 +172,7 @@
 						v-for="card in cards"
 						:key="card.image"
 						@click="selectCard(card)"
-						:class="{'is-covered': coveredCards.includes(card)}"
+						:class="{'is-covered': coveredCards.includes(card), 'is-uncovered': uncoveredCards.includes(card)}"
 						class="game-card"
 					>
 						<div class="game-card__face game-card-front">
