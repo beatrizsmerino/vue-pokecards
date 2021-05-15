@@ -305,7 +305,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	top: -0.1rem;
 	right: -0.1rem;
 	z-index: -1;
-	background-image: url('../images/bg-date.svg');
+	background-image: url('../images/bg-currentdate.svg');
 	background-position: top right;
 	background-size: contain;
 	background-repeat: no-repeat;
