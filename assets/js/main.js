@@ -100,10 +100,21 @@ const app = new Vue({
 
 			return numberRandom;
 		},
+		async getTotalPokemon(){
+			try {
+				const res = await fetch(`https://pokeapi.co/api/v2/pokemon`);
+				const data = await res.json();
+				const totalPokemon = data.count;
+				// console.log(totalPokemon);
+
+				return totalPokemon;
+			} catch(error) {
+				console.warn(error);
+			}
+		},
 		async getPokemon(id) {
 			try {
 				const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-
 				const data = await res.json();
 				// console.log(data);
 
@@ -159,9 +170,11 @@ const app = new Vue({
 		async getPokemons(numberMax) {
 			let pokemonId = [];
 			let pokemonList = [];
+
+			const totalPokemon = await this.getTotalPokemon();
 			
 			for (let index = 0; index < numberMax; index++) {
-				const pokemonRandom = await this.getRandomInteger(1, 152);
+				const pokemonRandom = await this.getRandomInteger(1, totalPokemon + 1);
 				if (!pokemonId.some((item) => item == pokemonRandom)) {
 					pokemonId.push(pokemonRandom);
 					const pokemonData = await this.getPokemon(pokemonRandom);
