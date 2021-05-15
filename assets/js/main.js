@@ -44,6 +44,7 @@ const app = new Vue({
 				default: "00:00",
 				changed: "00:00",
 			},
+			showLoader: false,
 		};
 	},
 	computed: {
@@ -64,6 +65,18 @@ const app = new Vue({
 		},
 	},
 	watch: {
+		cards: {
+			immediate: true,
+			handler(newValue) {
+				if (
+					newValue.length == parseInt(this.gameData.changed.selectedDeck) * 2
+				) {
+					this.removeLoader();
+				} else {
+					this.createLoader();
+				}
+			},
+		},
 		"gameData.changed.selectedDeck": {
 			immediate: true,
 			handler(newValue) {
@@ -112,6 +125,7 @@ const app = new Vue({
 
 				return data;
 			} catch (error) {
+				this.removeLoader();
 				console.warn(error);
 			}
 		},
@@ -351,6 +365,14 @@ const app = new Vue({
 					clearTimeout(timeout);
 				}
 			}, 300);
+		},
+		createLoader() {
+			this.showLoader = true;
+		},
+		removeLoader() {
+			setTimeout(()=>{
+				this.showLoader = false;
+			}, 1500);
 		},
 	},
 });
