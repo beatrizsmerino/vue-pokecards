@@ -2,6 +2,7 @@ const app = new Vue({
 	el: "#app",
 	data() {
 		return {
+			maxCards: 150,
 			cards: [],
 			pairedCards: [],
 			selectedCards: [],
@@ -101,16 +102,7 @@ const app = new Vue({
 			return numberRandom;
 		},
 		async getTotalPokemon(){
-			try {
-				const res = await fetch(`https://pokeapi.co/api/v2/pokemon`);
-				const data = await res.json();
-				const totalPokemon = data.count;
-				// console.log(totalPokemon);
-
-				return totalPokemon;
-			} catch(error) {
-				console.warn(error);
-			}
+			return this.maxCards;
 		},
 		async getPokemon(id) {
 			try {
