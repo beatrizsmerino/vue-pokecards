@@ -100,7 +100,7 @@ const app = new Vue({
 			immediate: true,
 			handler() {
 				if (this.counter.init) {
-					this.setCounterdown();
+					this.createCounterdown();
 				} else {
 					this.counter.changed = this.counter.default;
 				}
@@ -339,7 +339,7 @@ const app = new Vue({
 		setCounter() {
 			this.counter.init = !this.counter.init;
 		},
-		setCounterdown() {
+		createCounterdown() {
 			const seconds = 60;
 			const end = this.getCurrentDate().getTime() + seconds * 1000;
 
