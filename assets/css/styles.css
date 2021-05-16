@@ -280,10 +280,10 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 
 
 
-/*** CURRENT DATE ***/
+/*** CURRENT DATE TIME ***/
 /**************************/
 
-.current-date {
+.current-date-time {
 	padding: 1.5rem 2rem;
 	display: flex;
 	flex-direction: column;
@@ -296,7 +296,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	color: var(--color-pokemon-3);
 }
 
-.current-date:after {
+.current-date-time:after {
 	width: 17rem;
 	height: 8.5rem;
 	content: '';
@@ -305,7 +305,7 @@ https://github.com/animate-css/animate.css/blob/main/source/attention_seekers/sh
 	top: -0.1rem;
 	right: -0.1rem;
 	z-index: -1;
-	background-image: url('../images/bg-currentdate.svg');
+	background-image: url('../images/bg-current-date-time.svg');
 	background-position: top right;
 	background-size: contain;
 	background-repeat: no-repeat;

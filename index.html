@@ -18,12 +18,12 @@
 	<body>
 		<div id="app" v-cloak>
 			<div class="page-content">
-				<div class="current-date">
-					<time :datetime="`${current.date}`">
-						{{ current.date }}
+				<div class="current-date-time">
+					<time :datetime="`${currentDateTime.date}`">
+						{{ currentDateTime.date }}
 					</time>
-					<time :datetime="`${current.time}`">
-						{{ current.time }}
+					<time :datetime="`${currentDateTime.time}`">
+						{{ currentDateTime.time }}
 					</time>
 				</div>
 

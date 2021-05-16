@@ -34,7 +34,7 @@ const app = new Vue({
 				lose: false,
 			},
 			gameReset: false,
-			current: {
+			currentDateTime: {
 				time: "00:00:00",
 				date: "DD/MM/YYYY",
 			},
@@ -84,16 +84,16 @@ const app = new Vue({
 				this.resetGame();
 			},
 		},
-		"current.date": {
+		"currentDateTime.date": {
 			immediate: true,
 			handler() {
-				this.getCurrentDateFormat();
+				this.createCurrentDateFormat();
 			},
 		},
-		"current.time": {
+		"currentDateTime.time": {
 			immediate: true,
 			handler() {
-				this.getCurrentTimeFormat();
+				this.createCurrentTimeFormat();
 			},
 		},
 		"counter.init": {
@@ -318,22 +318,22 @@ const app = new Vue({
 				? 0 + number.toString()
 				: number.toString();
 		},
-		getCurrentDateFormat() {
+		createCurrentDateFormat() {
 			setInterval(() => {
 				const day = this.checkDigits(this.getCurrentDay());
 				const month = this.checkDigits(this.getCurrentMonth());
 				const year = this.checkDigits(this.getCurrentYear());
 
-				this.current.date = `${day}/${month}/${year}`;
+				this.currentDateTime.date = `${day}/${month}/${year}`;
 			}, 1000);
 		},
-		getCurrentTimeFormat() {
+		createCurrentTimeFormat() {
 			setInterval(() => {
 				const hours = this.checkDigits(this.getCurrentHours());
 				const minutes = this.checkDigits(this.getCurrentMinutes());
 				const seconds = this.checkDigits(this.getCurrentSeconds());
 
-				this.current.time = `${hours}:${minutes}:${seconds}`;
+				this.currentDateTime.time = `${hours}:${minutes}:${seconds}`;
 			}, 1000);
 		},
 		setCounter() {
