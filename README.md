@@ -7,9 +7,8 @@
 # Vue pokecards
 ### Game of couples of Pokémon cards made with vue.js.
 
-![Image of App Vue pokecards](https://github.com/beatrizsmerino/vue-pokecards/blob/master/README/images/vue-pokecards.jpg)
 
-
+![Image of App Vue pokecards](README/images/vue-pokecards.gif)
 
 ## Description
 Vue pokecards is a good memory game of couples of Pokémon cards.
