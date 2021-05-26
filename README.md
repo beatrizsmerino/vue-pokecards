@@ -86,15 +86,15 @@ It does not use NPM dependencies, it includes with a [CDN link to Framework Vue.
 
 ### Vue data
 
-- `cards` -> deck of cards
-- `pairedCards` -> cards already paired
-- `selectedCards` -> selected cards to verify whether or not it is a pair
-- `gameData` -> data of the game as attemps, fails, oppotunities...
-- `gameResult` -> game result data (finish, win and lose)
-- `gameReset` -> reset the values by default of the game
-- `currentDateTime` -> save/update the current date and current time
-- `counter` -> save/update the counterdown
-- `showLoader` -> save the status of loader
+- `cards` -> Data of type `Array` for save the deck of cards.
+- `pairedCards` -> Data of type `Array` for save the cards already paired.
+- `selectedCards` -> Data of type `Array` for save the selected cards and verify whether or not it is a pair.
+- `gameData` -> Data of type `Object` for save the status of game. It has data inside  of type `Boolean` for check the status of game: `selectedDeck`, `attemps`, `fails`, `oppotunities` and `difficult`.
+- `gameResult` -> Data of type `Object` for save the game result. It has data inside  of type `Boolean` for check the status of game: `finish`, `win` and `lose`.
+- `gameReset` -> Data of type `Boolean` for check if the game has been reset.
+- `currentDateTime` -> Data of the current date and current time
+- `counter` -> Data of the counter as `init`, `disabled`, `default` and `changed`.
+- `showLoader` -> Data of type `Boolean` for show or hide the loader.
 
 ### Vue computed properties
 
