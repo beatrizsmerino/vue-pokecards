@@ -290,7 +290,7 @@ const app = new Vue({
 				: false;
 		},
 		updatedOportunities() {
-			this.gameData.changed.opportunities.number = (this.gameData.changed.selectedDeck * 2) - 6;;
+			this.gameData.changed.opportunities.number = (this.gameData.changed.selectedDeck * 2) - 6;
 		},
 		getCurrentDate() {
 			return new Date();
