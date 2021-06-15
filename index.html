@@ -7,13 +7,31 @@
 		<title>
 			Parejas
 		</title>
+		<link
+			rel="shortcut icon"
+			type="image/x-icon"
+			href="assets/images/favicon.ico"
+		/>
 		<link rel="stylesheet" href="assets/css/styles.css" />
 	</head>
 
 	<body>
 		<div id="app" v-cloak>
 			<div class="page-content">
-				<img class="logo-pokemon" src="assets/images/pokemon-logo.svg" alt="">
+				<div class="current-date-time">
+					<time :datetime="`${currentDateTime.date}`">
+						{{ currentDateTime.date }}
+					</time>
+					<time :datetime="`${currentDateTime.time}`">
+						{{ currentDateTime.time }}
+					</time>
+				</div>
+
+				<img
+					class="logo-pokemon"
+					src="assets/images/logo-pokemon.svg"
+					alt=""
+				/>
 
 				<h1 class="page-title">
 					El juego de las parejas
@@ -26,7 +44,7 @@
 							class="game-options__input"
 							type="radio"
 							value="4"
-							v-model="selectedDeck"
+							v-model="gameData.changed.selectedDeck"
 						/>
 						<svg width="20px" height="20px" viewBox="0 0 20 20">
 							<circle cx="10" cy="10" r="9"></circle>
@@ -49,7 +67,7 @@
 							class="game-options__input"
 							type="radio"
 							value="6"
-							v-model="selectedDeck"
+							v-model="gameData.changed.selectedDeck"
 						/>
 						<svg width="20px" height="20px" viewBox="0 0 20 20">
 							<circle cx="10" cy="10" r="9"></circle>
@@ -72,7 +90,7 @@
 							class="game-options__input"
 							type="radio"
 							value="8"
-							v-model="selectedDeck"
+							v-model="gameData.changed.selectedDeck"
 						/>
 						<svg width="20px" height="20px" viewBox="0 0 20 20">
 							<circle cx="10" cy="10" r="9"></circle>
@@ -95,7 +113,7 @@
 							class="game-options__input"
 							type="radio"
 							value="10"
-							v-model="selectedDeck"
+							v-model="gameData.changed.selectedDeck"
 						/>
 						<svg width="20px" height="20px" viewBox="0 0 20 20">
 							<circle cx="10" cy="10" r="9"></circle>
@@ -124,28 +142,47 @@
 					<p
 						v-if="gameData.changed.difficult"
 						class="game-data__item game-data__opportunities"
-						:class="{'game-data__opportunities--error': lastOpportunity}"
+						:class="{'game-data__opportunities--error': gameData.changed.opportunities.last}"
 					>
-						Oportunidades: {{ gameData.changed.opportunities }}
+						Oportunidades: {{ gameData.changed.opportunities.number }}
 					</p>
+					<button
+						v-if="gameData.changed.selectedDeck > 8"
+						class="button button--color"
+						:disabled="counter.disabled"
+						@click="setCounter"
+					>
+						<span
+							v-if="counter.init"
+							class="game-data__item game-data__counter"
+						>
+							{{ counter.changed }}
+						</span>
+						<span v-else>
+							Iniciar contador
+						</span>
+					</button>
 				</div>
 
 				<ul
 					class="game-list-cards"
-					:class="{'game-list-cards--8': (selectedDeck == 8), 'game-list-cards--10': (selectedDeck > 8)}"
+					:class="{'game-list-cards--8': (gameData.changed.selectedDeck == 8), 'game-list-cards--10': (gameData.changed.selectedDeck > 8)}"
 				>
 					<li
 						v-for="card in cards"
 						:key="card.image"
 						@click="selectCard(card)"
-						:class="{'is-covered': coveredCards.includes(card)}"
+						:class="{'is-covered': coveredCards.includes(card), 'is-uncovered': uncoveredCards.includes(card)}"
 						class="game-card"
 					>
 						<div class="game-card__face game-card-front">
 							<h3 class="game-card-front__name">
 								{{ card.name }}
 							</h3>
-							<img :src="card.image" class="game-card-front__image" />
+							<img
+								:src="card.image"
+								class="game-card-front__image"
+							/>
 						</div>
 						<div class="game-card__face game-card-back">
 							<div class="game-card-back__inner">?</div>
@@ -156,7 +193,7 @@
 				<button
 					@click="resetGame"
 					v-if="gameResult.finish"
-					class="game-button"
+					class="button button--game"
 				>
 					Jugar de nuevo
 				</button>
@@ -166,19 +203,22 @@
 						v-if="gameResult.win"
 						class="game-result game-result--win"
 					>
-						WIN
+						¡Bien hecho!
 					</div>
 				</transition>
 				<transition name="slide-down-up">
 					<div
-						v-if="gameResult.over"
-						class="game-result game-result--over"
+						v-if="gameResult.lose"
+						class="game-result game-result--lose"
 					>
-						GAME OVER
+						Prueba de nuevo
 					</div>
 				</transition>
 			</div>
+
+			<div v-if="showLoader" class="loader"></div>
 		</div>
+
 
 		<script src="https://unpkg.com/vue"></script>
 		<script src="assets/js/main.js"></script>
