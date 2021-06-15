@@ -258,7 +258,7 @@ const app = new Vue({
 			this.resetData();
 			this.resetResult();
 			this.gameReset = true;
-			this.updatedOportunities();
+			this.updatedOpportunities();
 			this.lastOpportunity = false;
 			this.counter.init = false;
 			this.counter.disabled = false;
@@ -272,12 +272,12 @@ const app = new Vue({
 		checkDifficulty() {
 			if (this.gameData.changed.selectedDeck >= 8) {
 				this.gameData.changed.difficult = true;
-				this.checkOportunities();
+				this.checkOpportunities();
 			} else {
 				this.gameData.changed.difficult = false;
 			}
 		},
-		checkOportunities() {
+		checkOpportunities() {
 			if (this.gameData.changed.opportunities.number == 0) {
 				this.gameResult.finish = true;
 				this.gameResult.lose = true;
@@ -289,7 +289,7 @@ const app = new Vue({
 				? (this.gameData.changed.opportunities.last = true)
 				: false;
 		},
-		updatedOportunities() {
+		updatedOpportunities() {
 			this.gameData.changed.opportunities.number = (this.gameData.changed.selectedDeck * 2) - 6;
 		},
 		getCurrentDate() {
