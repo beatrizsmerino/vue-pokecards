@@ -89,11 +89,11 @@ It does not use NPM dependencies, it includes with a [CDN link to Framework Vue.
 - `cards` -> Data of type `Array` for save the deck of cards.
 - `pairedCards` -> Data of type `Array` for save the cards already paired.
 - `selectedCards` -> Data of type `Array` for save the selected cards and verify whether or not it is a pair.
-- `gameData` -> Data of type `Object` for save the status of game. It has data inside  of type `Boolean` for check the status of game: `selectedDeck`, `attemps`, `fails`, `oppotunities` and `difficult`.
+- `gameData` -> Data of type `Object` for save the status of game. It has data inside of type `Boolean` for check the status of game: `selectedDeck`, `attemps`, `fails`, `oppotunities` and `difficult`.
 - `gameResult` -> Data of type `Object` for save the game result. It has data inside  of type `Boolean` for check the status of game: `finish`, `win` and `lose`.
 - `gameReset` -> Data of type `Boolean` for check if the game has been reset.
-- `currentDateTime` -> Data of the current date and current time
-- `counter` -> Data of the counter as `init`, `disabled`, `default` and `changed`.
+- `currentDateTime` -> Data of type `String` for save the current date and current time
+- `counter` -> Data of the counter for save values of type `Boolean` and `String` as `init`, `disabled`, `default` and `changed`.
 - `showLoader` -> Data of type `Boolean` for show or hide the loader.
 
 ### Vue computed properties
@@ -104,7 +104,7 @@ It does not use NPM dependencies, it includes with a [CDN link to Framework Vue.
 ### Vue watch
 
 - `cards` -> Watch the list of cards was loaded for add or remove the loader animation.
-- `gameData.changed.selectedDeck` -> Watch if the deck number changes, the game is restarted.
+- `gameData.changed.selectedDeck` -> Watch if the deck number changes and the game is restarted.
 - `currentDateTime.date` -> Watch the current date and update it.
 - `currentDateTime.time` -> Watch the current time and update it.
 - `counter.init` -> Watch if the counter has started and starts the countdown if not reset the counter to the default value.
@@ -117,22 +117,22 @@ It does not use NPM dependencies, it includes with a [CDN link to Framework Vue.
 - `getTotalPokemon()` -> Returns the maximun number of pokemon inside the deck.
 - `getPokemon(id)` -> Returns the pokemon data from the API with the specified id.
 - `createPokemon(data)` -> Returns a new JSON with the data of pokemon (id, name, images...).
-- `createPairs(pokemons)` -> Returns the pairs of cards from the pokemon deck. Create a new JSON separating the pokemon into 2 objects, one with the back image and one with the front image. So if the JSON was 6 pokemon, now it will be 12.
-- `getPokemons(numberMax)` -> Returns the list of pokemon with his data. It looks for random numbers between 0 and the given maximum number and returns the ids of the pokemon, which are then looked up in the API to create our JSON.
+- `createPairs(pokemons)` -> Returns the pairs of cards from the pokemon deck. Create a new JSON separating the pokemon into 2 objects, one with the back image and one with the front image. So if the JSON was 6 pokemon, now it will be 12 `Objects`.
+- `getPokemons(numberMax)` -> Returns the list of pokemon with his data. It looks for random numbers between 1 and the given maximum number and returns the ids of the pokemon, which are then looked up in the API to create our JSON.
 - `randomCards()` -> Get the deck of cards and reorder them randomly.
 
 #### Vue methods: Game actions
 
-- `selectCard(card)` -> This function is executed with the event click on the card. It gets the id of the selected card and makes several checks. If the game is not finished, it saves the selected card. If only 1 card has been saved and the counter has not been started it is disabled. In case there are 2 cards selected, the number of attempts is increased, if the cards have the same id they are kept as pairs, but if not the number of fails is increased and the chances are decreased.
+- `selectCard(card)` -> This function is executed with the event click on the card. It gets the id of the selected card and makes several checks. If the game is not finished, it saves the selected card. If only 1 card has been saved and the `counter` has not been started it is disabled. In case there are 2 cards selected, the number of `attempts` is increased, if the cards have the same id they are kept as pairs, but if not the number of `fails` is increased and the `opportunities` are decreased.
 - `resetData()` -> Overwrite changed values of `gameData` with default values.
-- `resetResult()` -> Reset `gameResult` (finish, win and lose) to default values.
+- `resetResult()` -> Reset `gameResult` with default values.
 - `initGame(coveredCards)` -> Restart the game, i.e. the default values have been reset and save the new deck of cards in the data `cards`.
-- `resetGame()` -> Deck the cards randomly, empty the card arrays `pairedCards` and `selectedCards`, reset the data values to the default values...
-- `checkResultGame()` -> Check if all cards have been uncovered to indicate that the game is finished and you have win.
-- `checkDifficulty()` -> Check the difficulty according to the number of pokemon chosen from the deck. If it is 8 or more, the limit of opportunities is activated.
-- `checkOportunities()` -> Check if the number of opportunities has reached 0, if so, the game ends and you lose.
-- `checkLastOpportunity()` -> Check if you are on your last chance, if so, apply a css class to the html, to style and animate the box where you indicate the number of optunities you have left.
-- `updatedOportunities()` -> The number of chances changes according to the number of pokemon chosen from your deck.
+- `resetGame()` -> Deck the cards randomly, empty the  `pairedCards` and `selectedCards`, reset the data values to the default values...
+- `checkResultGame()` -> Check if all cards have been uncovered to indicate that the game is finished and you have `win`.
+- `checkDifficulty()` -> Check the difficulty according to the number of pokemon chosen from the deck. If it is 8 or more, the limit of `opportunities` is activated.
+- `checkOpportunities()` -> Check if the number of `opportunities` has reached 0, if so, the game ends and you `lose`.
+- `checkLastOpportunity()` -> Check if you are on your `last opportunity`, if so, apply a css class to the html, for add styles and animate the box where you indicate the number of `opptunities` you have left.
+- `updatedOpportunities()` -> The number of `opportunities` changes according to the number of pokemon chosen from your deck.
 
 #### Vue methods: Current date time
 
